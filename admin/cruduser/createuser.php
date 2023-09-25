@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <form method="post">
         <div class="mb-3">
             <label class="form-label" >User Name</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter your username" autocomplete="off" name="username">
+            <input value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>" type="text" class="form-control" id="username" placeholder="Enter your username" autocomplete="off" name="username">
         </div>
         <div class="mb-3">
             <label class="form-label" >Email</label>

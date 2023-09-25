@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream:login.html
-=======
 <?php 
 require_once "config.php";
 session_start();
@@ -33,7 +31,6 @@ if(isset($_POST["_submit"])) {
 }
 }
 ?>
->>>>>>> Stashed changes:login.php
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +40,7 @@ if(isset($_POST["_submit"])) {
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./pages/css/style.css" />
     <title>Login and Registration</title>
   </head>
   <body>
@@ -73,6 +70,7 @@ if(isset($_POST["_submit"])) {
         </div>
       </nav>
       <!------------------------------- From box ------------------------------->
+      <form action="">
       <div class="form-box">
         <!------------------ login form ------------------>
         <div class="login-container" id="login">
@@ -108,14 +106,9 @@ if(isset($_POST["_submit"])) {
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream:login.html
-
-        <!------------------ registration form ------------------>
-=======
       </form>
-        <!-- ---------------- registration form ----------------
+      <!-- registion from -->
       <form name="registration_form" action="post">
->>>>>>> Stashed changes:login.php
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -156,11 +149,7 @@ if(isset($_POST["_submit"])) {
         </div>
       </div>
     </div>
-<<<<<<< Updated upstream:login.html
-
-=======
-  </form> -->
->>>>>>> Stashed changes:login.php
+  </form> 
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
