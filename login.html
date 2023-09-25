@@ -1,3 +1,39 @@
+<<<<<<< Updated upstream:login.html
+=======
+<?php 
+require_once "config.php";
+session_start();
+
+if(isset($_POST["_submit"])) {
+  try {
+    $username = sanitize($_POST['username']);
+    $userpass = sanitize($_POST['userpassword']);
+    $pw_hashed = sha1($userpass);
+    $sqlstr = "SELECT id, username, password from user WHERE username = '$username'";
+    $result = $conn->query($sqlstr);
+
+    if ($result && $result->num_rows > 0) {
+      $row = result -> fetch_assoc();
+      // verify pass
+      if (password_verify($pw_hashed, $row["password"])) {
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['username'] = $row['username'];
+
+        header("Location: admin/index.php");
+        exit();
+      } else {
+        echo 'Invalid password';
+      }
+    } else {
+      echo 'Invalid username';
+    }
+
+  }catch(Exception $e){
+    echo $e->getMessage();
+}
+}
+?>
+>>>>>>> Stashed changes:login.php
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +50,7 @@
     <div class="wrapper">
       <nav class="nav">
         <div class="nav-logo">
-          <img src="./.././assets/images/logo.png" alt="" />
+          <img src="./assets/images/logo.png" alt="" />
         </div>
         <div class="nav-menu" id="navMenu">
           <ul>
@@ -60,7 +96,7 @@
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
-            <input type="submit" class="submit" value="Sign In" />
+            <input name="_submit" type="submit" class="submit" value="Sign In" />
           </div>
           <div class="two-col">
             <div class="one">
@@ -72,8 +108,14 @@
             </div>
           </div>
         </div>
+<<<<<<< Updated upstream:login.html
 
         <!------------------ registration form ------------------>
+=======
+      </form>
+        <!-- ---------------- registration form ----------------
+      <form name="registration_form" action="post">
+>>>>>>> Stashed changes:login.php
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -114,7 +156,11 @@
         </div>
       </div>
     </div>
+<<<<<<< Updated upstream:login.html
 
+=======
+  </form> -->
+>>>>>>> Stashed changes:login.php
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
