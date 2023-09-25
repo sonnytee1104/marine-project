@@ -1,3 +1,14 @@
+<?php 
+require_once "config.php";
+if(isset($_POST["submit"])) {
+  try {
+    $username = sanitize($_POST['username']);
+    $userpass = sanitize($_POST['userpassword']);
+  }catch(Exception $e){
+    echo $e->getMessage();
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +18,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./pages/css/style.css" />
     <title>Login and Registration</title>
   </head>
   <body>
@@ -37,6 +48,7 @@
         </div>
       </nav>
       <!------------------------------- From box ------------------------------->
+      <form name="login_form" action="post">
       <div class="form-box">
         <!------------------ login form ------------------>
         <div class="login-container" id="login">
@@ -49,6 +61,7 @@
           </div>
           <div class="input-box">
             <input
+              name="username"
               type="text"
               class="input-field"
               placeholder="Username or Email"
@@ -56,7 +69,7 @@
             <i class="bx bx-user"></i>
           </div>
           <div class="input-box">
-            <input type="pasword" class="input-field" placeholder="Password" />
+            <input name="userpassword" type="pasword" class="input-field" placeholder="Password" />
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
@@ -72,8 +85,9 @@
             </div>
           </div>
         </div>
-
+      </form>
         <!------------------ registration form ------------------>
+      <form name="registration_form" action="post">
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -114,7 +128,7 @@
         </div>
       </div>
     </div>
-
+  </form>
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
