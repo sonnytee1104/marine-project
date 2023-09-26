@@ -1,138 +1,118 @@
 <?php 
-require_once "../config.php"
+require_once "../../config.php"
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD user</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
-                </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">loser</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col py-3">
-        <div class="container">
-        <button class="btn btn-primary my-5"><a class="text-light" href="createuser.php"> Add users</a></button>
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sl no</th>
-      <th scope="col">Username</th>
-      <th scope="col">Email</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
+  <head>
+  	<title>CRUD user</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <?php 
-    $sqlstr = "SELECT id,username,email FROM user";
-    $result = $conn->query($sqlstr);
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['id'];
-            $username = $row['username'];
-            $email = $row['email'];
-            echo '<tr>
-            <th scope="row">'.$id.'</th>
-            <td>'.$username.'</td>
-            <td>'.$email.'</td>
-            <td>
-                <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light" >Update</a></button>
-                <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
-            </td>
-          </tr>';
-        }
-    }
-  ?>
-  
-  </tbody>
-</table>
-    </div>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../sidebar-05/css/style.css">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
         </div>
-    </div>
-</div>
-    
-</body>
+				<div class="p-4">
+		  		<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+	            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+	          </li>
+	          <li>
+	              <a href="#"><span class="fa fa-user mr-3"></span> About</a>
+	          </li>
+	          <li>
+              <a href="#"><span class="fa fa-briefcase mr-3"></span> Works</a>
+	          </li>
+	          <li>
+              <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+	          </li>
+	          <li>
+              <a href="#"><span class="fa fa-suitcase mr-3"></span> Gallery</a>
+	          </li>
+	          <li>
+              <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
+	          </li>
+	          <li>
+              <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+	          </li>
+	        </ul>
+
+	        <div class="mb-5">
+						<h3 class="h6 mb-3">Subscribe for newsletter</h3>
+						<form action="#" class="subscribe-form">
+	            <div class="form-group d-flex">
+	            	<div class="icon"><span class="icon-paper-plane"></span></div>
+	              <input type="text" class="form-control" placeholder="Enter Email Address">
+	            </div>
+	          </form>
+					</div>
+
+	        <div class="footer">
+	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	        </div>
+
+	      </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4">CRUD</h2>
+        <div class="container">
+			<button class="btn btn-primary my-5"><a class="text-light" href="createuser.php"> Add users</a></button>
+			<table class="table">
+	  <thead>
+		<tr>
+		  <th scope="col">Sl no</th>
+		  <th scope="col">Username</th>
+		  <th scope="col">Email</th>
+		  <th scope="col">Action</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	
+	  <?php 
+		$sqlstr = "SELECT id,username,email FROM user";
+		$result = $conn->query($sqlstr);
+		if ($result) {
+			while ($row = $result->fetch_assoc()) {
+				$id = $row['id'];
+				$username = $row['username'];
+				$email = $row['email'];
+				echo '<tr>
+				<th scope="row">'.$id.'</th>
+				<td>'.$username.'</td>
+				<td>'.$email.'</td>
+				<td>
+					<button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light" >Update</a></button>
+					<button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
+				</td>
+			  </tr>';
+			}
+		}
+	  ?>
+	  
+	  </tbody>
+	</table>
+		</div>
+      </div>
+
+	<script src="../sidebar-05/js/jquery.min.js"></script>
+	<script src="../sidebar-05//js/popper.js"></script>
+	<script src="../sidebar-05/js/popper.js"></script>
+	<script src="../sidebar-05/js/main.js"></script>
+  </body>
 </html>
