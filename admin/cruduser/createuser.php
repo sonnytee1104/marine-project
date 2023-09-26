@@ -24,16 +24,9 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create USERS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-<body>
+<?php 
+require_once ("../header.php");
+?>
     <div class="container my-5">
     <form method="post">
         <div class="mb-3">
@@ -42,7 +35,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="mb-3">
             <label class="form-label" >Email</label>
-            <input type="email" class="form-control" id="useremail" placeholder="Enter your Email" autocomplete="off" name="email">
+            <input value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>" type="email" class="form-control" id="useremail" placeholder="Enter your Email" autocomplete="off" name="email">
         </div>
         <div class="mb-3">
             <label class="form-label" >Password</label>
