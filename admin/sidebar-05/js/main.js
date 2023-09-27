@@ -1,19 +1,32 @@
 (function($) {
 
-	"use strict";
+    "use strict";
 
-	var fullHeight = function() {
+    var fullHeight = function() {
+        $('.js-fullheight').css('height', $(window).height());
+        $(window).resize(function(){
+            $('.js-fullheight').css('height', $(window).height());
+        });
+    };
 
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
-		});
+    // Function to toggle sidebar state
+    var toggleSidebarState = function() {
+        $('#sidebar').toggleClass('active');
+        // Store the state in localStorage
+        var sidebarState = $('#sidebar').hasClass('active') ? 'open' : 'closed';
+        localStorage.setItem('sidebarState', sidebarState);
+    };
 
-	};
-	fullHeight();
+    // Check and set the sidebar state on page load
+    var storedSidebarState = localStorage.getItem('sidebarState');
+    if (storedSidebarState === 'closed') {
+        $('#sidebar').removeClass('active');
+    }
 
-	$('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
-  });
+    // Attach click event handler to toggle sidebar
+    $('#sidebarCollapse').on('click', toggleSidebarState);
+
+    // Initial setup
+    fullHeight();
 
 })(jQuery);

@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php";
+require_once ("../header.php");
 $pw_error = '';
 if (isset($_POST['submit'])) {
     $name = sanitize($_POST['username']);
@@ -53,5 +53,9 @@ require_once ("../header.php");
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
+    <script src="../sidebar-05/js/jquery.min.js"></script>
+	<script src="../sidebar-05/js/boostrap.min.js"></script>
+	<script src="../sidebar-05/js/main.js"></script>
+	<script src="../sidebar-05//js/popper.js"></script>
 </body>
 </html>

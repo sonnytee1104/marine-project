@@ -44,8 +44,8 @@ require_once ("../header.php");
       </div>
 
 	<script src="../sidebar-05/js/jquery.min.js"></script>
-	<script src="../sidebar-05//js/popper.js"></script>
-	<script src="../sidebar-05/js/popper.js"></script>
+	<script src="../sidebar-05/js/boostrap.min.js"></script>
 	<script src="../sidebar-05/js/main.js"></script>
+	<script src="../sidebar-05//js/popper.js"></script>
   </body>
 </html>
