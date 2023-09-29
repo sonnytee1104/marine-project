@@ -1,5 +1,6 @@
 <?php 
-require_once "config.php"
+require_once "config.php";
+$page = substr($_SERVER['SCRIPT_NAME'], strpos($_SERVER['SCRIPT_NAME'],"/")+16);
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,14 +27,14 @@ require_once "config.php"
 				<div class="p-4">
 		  		<h1><a href="index.html" class="logo">Jetkinson Sea Life <span>Dashboard</span></a></h1>
 	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
-	            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+	          <li class="<?= $page == 'admin/cruduser/display.php' ? 'active':''; ?>">
+	            <a href="../admin/cruduser/display.php"><span class="fa fa-home mr-3"></span> CRUD DISPLAY</a>
 	          </li>
-	          <li>
-	              <a href="#"><span class="fa fa-user mr-3"></span> About</a>
+	          <li class="<?= $page == 'admin/cruduser/update.php' ? 'active':''; ?>">
+	              <a href="../admin/cruduser/update.php"><span class="fa fa-user mr-3"></span> update user</a>
 	          </li>
-	          <li>
-              <a href="#"><span class="fa fa-briefcase mr-3"></span> Works</a>
+	          <li class="<?= $page == 'admin/cruduser/createuser.php' ? 'active':''; ?>">
+              <a href="../admin/cruduser/createuser.php"><span class="fa fa-briefcase mr-3"></span> CREATE USERS</a>
 	          </li>
 	          <li>
               <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
@@ -62,9 +63,9 @@ require_once "config.php"
 	        <div class="footer">
 	        	<p>
 					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i> by Aptech
-						</p>
+				</p>
 	        </div>
-
+			
 	      </div>
     	</nav>
 

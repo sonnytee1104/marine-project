@@ -1,5 +1,5 @@
 <?php
-require_once ("../header.php");
+ require_once ("../header.php");
 $pw_error = '';
 if (isset($_POST['submit'])) {
     $name = sanitize($_POST['username']);
@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     $hashed_pass = sha1($password);
 
     // Check if the password and password confirmation match
-    if ($password === $password_confirm) {
+    if ($password === $password_confirm && $password !== '') {
         $sqlstr = "INSERT INTO user(username, password, email) VALUES ('$name', '$hashed_pass', '$email')";
 
         $result = $conn->query($sqlstr);

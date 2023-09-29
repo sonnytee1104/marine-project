@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $hashed_pass = sha1($password);
 
     // Check if the password and password confirmation match
-    if ($password === $password_confirm) {
+    if ($password === $password_confirm && $password !== '') {
         $sqlstr = "UPDATE user SET username = '$name', password = '$hashed_pass', email = '$email' WHERE id = '$id'";
 
         $result = $conn->query($sqlstr);
@@ -26,7 +26,17 @@ if (isset($_POST['submit'])) {
         } else {
             echo "Error: " . $conn->error;
         }
-    } else {
+    } else if ($password == "") {
+        $sqlstr = "UPDATE user SET username = '$name', email = '$email' WHERE id = '$id'";
+        $result = $conn->query($sqlstr);
+        
+        if ($result) {
+            header('location: display.php');
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    } 
+    else {
         $pw_error = "Password and confirmation do not match.";
     }
 }
