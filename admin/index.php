@@ -15,6 +15,7 @@ require_once "header.php"
         <a href="">pictures</a>
     </div>
     </div>
+    
     <script src="../sidebar-05/js/jquery.min.js"></script>
 	<script src="../sidebar-05/js/boostrap.min.js"></script>
 	<script src="../sidebar-05/js/main.js"></script>

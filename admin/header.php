@@ -31,7 +31,7 @@ $page = substr($_SERVER['SCRIPT_NAME'], strpos($_SERVER['SCRIPT_NAME'],"/")+16);
 	            <a href="../admin/cruduser/display.php"><span class="fa fa-home mr-3"></span> CRUD DISPLAY</a>
 	          </li>
 	          <li class="<?= $page == 'admin/cruduser/update.php' ? 'active':''; ?>">
-	              <a href="../admin/cruduser/update.php"><span class="fa fa-user mr-3"></span> update user</a>
+	              <a href="../admin/cruduser/update.php"><span class="fa fa-user mr-3"></span> Update user</a>
 	          </li>
 	          <li class="<?= $page == 'admin/cruduser/createuser.php' ? 'active':''; ?>">
               <a href="../admin/cruduser/createuser.php"><span class="fa fa-briefcase mr-3"></span> CREATE USERS</a>
