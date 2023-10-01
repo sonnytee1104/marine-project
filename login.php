@@ -1,34 +1,7 @@
 <?php 
-require_once "config.php";
-session_start();
-
-if(isset($_POST["_submit"])) {
-  try {
-    $username = sanitize($_POST['username']);
-    $userpass = sanitize($_POST['userpassword']);
-    $pw_hashed = sha1($userpass);
-    $sqlstr = "SELECT id, username, password from user WHERE username = '$username'";
-    $result = $conn->query($sqlstr);
-
-    if ($result && $result->num_rows > 0) {
-      $row = result -> fetch_assoc();
-      // verify pass
-      if (password_verify($pw_hashed, $row["password"])) {
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-
-        header("Location: admin/index.php");
-        exit();
-      } else {
-        echo 'Invalid password';
-      }
-    } else {
-      echo 'Invalid username';
-    }
-
-  }catch(Exception $e){
-    echo $e->getMessage();
-}
+require_once "config.php"; 
+if (isset($_POST['login'])) {
+  dd($_POST['login']);
 }
 ?>
 <!DOCTYPE html>
@@ -40,14 +13,14 @@ if(isset($_POST["_submit"])) {
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./pages/css/style.css" />
+    <link rel="stylesheet" href="./pages/css/style.css">
     <title>Login and Registration</title>
   </head>
   <body>
     <div class="wrapper">
       <nav class="nav">
         <div class="nav-logo">
-          <img src="./assets/images/logo.png" alt="" />
+          <img src="./assets/images/Logo.png" alt="" />
         </div>
         <div class="nav-menu" id="navMenu">
           <ul>
@@ -70,7 +43,7 @@ if(isset($_POST["_submit"])) {
         </div>
       </nav>
       <!------------------------------- From box ------------------------------->
-      <form action="">
+      <form name="login_form" action="post">
       <div class="form-box">
         <!------------------ login form ------------------>
         <div class="login-container" id="login">
@@ -94,7 +67,7 @@ if(isset($_POST["_submit"])) {
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
-            <input name="_submit" type="submit" class="submit" value="Sign In" />
+            <input name="login" type="submit" class="submit" value="Sign In" />
           </div>
           <div class="two-col">
             <div class="one">
@@ -106,9 +79,9 @@ if(isset($_POST["_submit"])) {
             </div>
           </div>
         </div>
-      </form>
-      <!-- registion from -->
-      <form name="registration_form" action="post">
+        </form>
+        <!------------------ registration form ------------------>
+        <form name="register_form" action="post">
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -149,7 +122,7 @@ if(isset($_POST["_submit"])) {
         </div>
       </div>
     </div>
-  </form> 
+    </form>
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
