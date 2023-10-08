@@ -1,163 +1,94 @@
 <?php 
-require_once "config.php"; 
-if (isset($_POST['login'])) {
-  dd($_POST['login']);
+session_start();
+include('config.php');
+include('includes/header.php');
+include('includes/navbar.php');
+
+if(isset($_SESSION['auth']))
+{
+    $_SESSION['message'] = "You are already logged In";
+    header("Location: index.php");
+    exit();
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./pages/css/style.css">
-    <title>Login and Registration</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <nav class="nav">
-        <div class="nav-logo">
-          <img src="./assets/images/Logo.png" alt="" />
-        </div>
-        <div class="nav-menu" id="navMenu">
-          <ul>
-            <li><a href="#" class="link active">Home</a></li>
-            <li><a href="#" class="link">Blog</a></li>
-            <li><a href="#" class="link">Services</a></li>
-            <li><a href="#" class="link">About</a></li>
-          </ul>
-        </div>
-        <div class="nav-button">
-          <button class="btn white-btn" id="loginBtn" onclick="login()">
-            Sign In
-          </button>
-          <button class="btn" id="registerBtn" onclick="register()">
-            Sign Up
-          </button>
-        </div>
-        <div class="nav-menu-btn">
-          <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-        </div>
-      </nav>
-      <!------------------------------- From box ------------------------------->
-      <form name="login_form" action="post">
-      <div class="form-box">
-        <!------------------ login form ------------------>
-        <div class="login-container" id="login">
-          <div class="top">
-            <span
-              >Don't have an account?
-              <a href="#" onclick="register()">Sign Up</a></span
-            >
-            <header>Login</header>
-          </div>
-          <div class="input-box">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="Username or Email"
-            />
-            <i class="bx bx-user"></i>
-          </div>
-          <div class="input-box">
-            <input type="pasword" class="input-field" placeholder="Password" />
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <div class="input-box">
-            <input name="login" type="submit" class="submit" value="Sign In" />
-          </div>
-          <div class="two-col">
-            <div class="one">
-              <input type="checkbox" id="register-check" />
-              <label for="register-check">Remember Me</label>
-            </div>
-            <div class="two">
-              <label><a href="#">Forgot password?</a></label>
-            </div>
-          </div>
-        </div>
-        </form>
-        <!------------------ registration form ------------------>
-        <form name="register_form" action="post">
-        <div class="register-container" id="register">
-          <div class="top">
-            <span
-              >Have an account? <a href="#" onclick="login()">Login</a></span
-            >
-            <header>Sign Up</header>
-          </div>
-          <div class="two-forms">
-            <div class="input-box">
-              <input type="text" class="input-field" placeholder="Firstname" />
-              <i class="bx bx-user"></i>
-            </div>
-            <div class="input-box">
-              <input type="text" class="input-field" placeholder="Lastname" />
-              <i class="bx bx-user"></i>
-            </div>
-          </div>
-          <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" />
-            <i class="bx bx-envelope"></i>
-          </div>
-          <div class="input-box">
-            <input type="pasword" class="input-field" placeholder="Password" />
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <div class="input-box">
-            <input type="submit" class="submit" value="Register" />
-          </div>
-          <div class="two-col">
-            <div class="one">
-              <input type="checkbox" id="register-check" />
-              <label for="register-check">Remember Me</label>
-            </div>
-            <div class="two">
-              <label><a href="#">Terms and Conditions</a></label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </form>
-    <script>
-      function myMenuFunction() {
-        var i = document.getElementById("navMenu");
-
-        if (i.className === "nav-menu") {
-          i.className += " responsive";
-        } else {
-          i.className = "nav-menu";
+if(isset($_POST['login_btn']))
+{
+    $name = sanitize($_POST['username']);
+    $password = sanitize($_POST['password']);
+    $hashed_pass = sha1($password);
+    //bind param
+    $sqlstr = "SELECT id, username, email, role_as from user WHERE username = ? and password = ? ";
+    $stmt = $conn->prepare($sqlstr);
+    $stmt->bind_param("ss", $name, $hashed_pass);
+    $stmt->execute();
+    //store value
+    $resultArray = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+  
+    if (count($resultArray) > 0) {
+        $userInfor = $resultArray[0];
+        $_SESSION['auth'] = true;
+        $_SESSION['auth_role'] = $userInfor['role_as'];
+        $_SESSION['auth_user'] = $userInfor;
+        if($_SESSION['auth_role'] == 1) // 1 = admin
+        {
+            $_SESSION['message'] = "Welcome to admin dashboard";
+            header('location: admin/index.php');
+            exit(); 
         }
-      }
-    </script>
+        else if($_SESSION['auth_role'] == 0) // 0 = user
+        {
+            $_SESSION['message'] = "You're logged in";
+            header('location: index.php');
+            exit(); 
+        }
+    
+    }
+    else
+    {
+        $_SESSION['message'] = "Invalid Email or Password";
+        header('location: login.php');
+        exit();
+    }
+}
 
-    <script>
-      var a = document.getElementById("loginBtn");
-      var b = document.getElementById("registerBtn");
-      var c = document.getElementById("login");
-      var d = document.getElementById("register");
+?>
 
-      function login() {
-        c.style.left = "4px";
-        d.style.right = "-520px";
-        a.className += " white-btn";
-        b.className = "btn";
-        c.style.opacity = "1";
-        d.style.opacity = "0";
-      }
+<div class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+            <?php
+            include("message.php");
+            ?>
+            <div class="cart">
+                <div class="cart-header">
+                    <h4>Login</h4>
+                </div>
+                <div class="cart-body">
 
-      function register() {
-        c.style.left = "-510px";
-        d.style.right = "5px";
-        a.className = "btn";
-        b.className += " white-btn";
-        c.style.opacity = "0";
-        d.style.opacity = "1";
-      }
-    </script>
-  </body>
-</html>
+                    <form action="" method="post">
+                        <div class="form-group-mb-3">
+                            <label for="">Username</label>
+                            <input name="username" type="text" placeholder="Enter Username" class="form-control">
+                        </div>
+                        <div class="form-group-mb-3">
+                            <label for="">Password</label>
+                            <input name="password" type="password" placeholder="Enter Password" class="form-control">
+                        </div>
+                        <div class="form-group-mb-3">
+                        <input class="form-control" type="checkbox" name="remember">
+                        <label>Remember me!</label> 
+                        </div>
+                        <div class="form-group-mb-3">
+                            <button name="login_btn" type="submit" class="btn btn-primary mt-2">Login Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php 
+include('includes/footer.php');
+?>

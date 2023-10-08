@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jetkinson Marine</title>
-</head>
-<body>
-    Hello World
-</body>
-</html>
+<?php 
+session_start();
+require_once('config.php');
+include('includes/header.php');
+include('includes/navbar.php');
+?>
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <?php include('message.php');?>
+
+                <h2>Hello</h2>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php 
+include('includes/footer.php');
+?>
