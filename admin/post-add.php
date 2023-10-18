@@ -92,7 +92,7 @@ include('includes/header.php');
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="">Images</label>
-                                <input required type="file" name ="image[]" class="form-control" multiple>
+                                <input type="file" name ="images[]" class="form-control" multiple >
                             </div>
                             <div class="col-md-12 mb-3">
                                 <button name="post_add" type="submit" class="btn btn-primary">Add Post</button>
