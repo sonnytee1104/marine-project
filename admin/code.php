@@ -43,7 +43,7 @@ if(isset($_POST['post_add']))
                     
                     if (in_array($img_ex_lc, $allowed_exs)) {
                         $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
-                        $img_upload_path = 'D:\XAMPP\htdocs\marine-project2\assets\pictures/' . $new_img_name;
+                        $img_upload_path = 'D:\XAMPP\htdocs\marine-project\assets\pictures/' . $new_img_name;
                         
                         $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
                         $stmt = $conn->prepare($sqlstr);

@@ -34,9 +34,9 @@ include('includes/header.php');
                             <tbody>
                                 <?php 
                                 $sql_animals = "SELECT id, category, location_id, animal_name, description FROM animals";
-                                $result_animals = $conn->query($sql_animals);                            
-                                if ($result_animals) 
-                                {
+                                $result_animals = $conn->query($sql_animals);
+                                
+                                if ($result_animals) {
                                     $counter = 1;
                                     while ($row_animals = $result_animals->fetch_assoc()) {
                                         $id = $row_animals['id'];
@@ -44,16 +44,48 @@ include('includes/header.php');
                                         $location_id = $row_animals['location_id'];
                                         $animal_name = $row_animals['animal_name'];
                                         $description = $row_animals['description'];
+
+                                        // Get the categories name
+                                        $sqlstr = "SELECT cate_name FROM categories WHERE id = $category_id";
+                                        $result_cate = $conn->query($sqlstr); 
+                                        if(!$result_cate)
+                                        {
+                                            $_SESSION['message'] = "Ops! Can't not get the pictures";
+                                            header("Location: post-view.php");
+                                            exit();
+                                        }
+                                        $category = $result_cate->fetch_assoc()['cate_name'] ?? null;
+
+                                        // Get the location name
+                                        $sqlstr = "SELECT places FROM location WHERE id = $location_id";
+                                        $result_loca = $conn->query($sqlstr); 
+                                        if(!$result_loca)
+                                        {
+                                            $_SESSION['message'] = "Ops! Can't not get the location";
+                                            header("Location: post-view.php");
+                                            exit();
+                                        }
+                                        $location = $result_loca->fetch_assoc()['places'] ?? null;
+                                        
+                                        // Get images for the current animal
                                         $sql_images = "SELECT img_path FROM pictures WHERE cate_id = $category_id";
                                         $result_images = $conn->query($sql_images);
-
+                                        
                                         echo '<tr>
                                             <th scope="row">'.$counter.'</th>
                                             <td>'.$category.'</td>
                                             <td>'.$location.'</td>
                                             <td>'.$animal_name.'</td>
                                             <td>'.$description.'</td>
-                                            <td><!-- Display images here --></td>
+                                            <td>';
+                                
+                                        if ($result_images) {
+                                            while ($row_images = $result_images->fetch_assoc()) {
+                                                echo '<img src="../assets/pictures/'.$row_images['img_path'].'" alt="Animal Image" style="max-width: 100px; max-height: 100px;"> ';
+                                            }
+                                        }
+                                
+                                        echo '</td>
                                             <td>
                                                 <button class="btn btn-info"><a href="animal-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                             </td>
@@ -63,17 +95,15 @@ include('includes/header.php');
                                                 </form>
                                             </td>
                                         </tr>';
+                                
                                         $counter++;
                                     }
+                                } else {
+                                    echo '<tr>
+                                        <td colspan="8">No Record Found</td>
+                                    </tr>';
                                 }
-                                else
-                                {
-                                    ?>
-                                        <tr>
-                                            <td colspan="8">No Record Found</td>
-                                        </tr>
-                                    <?php
-                                }
+                                
                                 ?>
                             </tbody>
                         </table>

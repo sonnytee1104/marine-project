@@ -19,5 +19,5 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
     $protocol = 'http://';
 }
 
-define("ROOT_URL", $protocol . $_SERVER['HTTP_HOST'] . "/marine-project2/");
+define("ROOT_URL", $protocol . $_SERVER['HTTP_HOST'] . "/marine-project/");
 
