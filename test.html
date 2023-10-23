@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Confirmation</title>
+    <script>
+        function confirmDelete() {
+            var result = alert("Are you sure you want to delete?");
+            if (result) {
+                // User clicked "OK," proceed with deletion or form submission
+                // You can add your AJAX call or form submission logic here
+                alert("Deleting..."); // Replace this with your actual delete logic
+            } else {
+                // User clicked "Cancel," do nothing or handle accordingly
+                alert("Cancelled");
+            }
+        }
+    </script>
+</head>
+<body>
+
+<button onclick="confirmDelete()">Delete</button>
+
+</body>
+</html>

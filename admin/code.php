@@ -8,112 +8,6 @@ if(isset($_POST['post_delete']))
 }
 
 
-// Post Edit
-if (isset($_POST['post_edit']))
-{
-    $post_id = $_POST['post_id'];
-    $category_id = sanitize($_POST['category']);
-    $location_id = sanitize($_POST['location']);
-    $animal_name = sanitize($_POST['aname']);
-    $description = sanitize($_POST['description']);
-
-    $conn->begin_transaction();
-
-    try 
-    {
-        // Update into animal table
-        $animal_insert_query = "UPDATE animals SET category = ?, animal_name = ?, description = ?, location_id = ? WHERE id = '$post_id'";
-        $stmt = $conn->prepare($animal_insert_query);
-        $stmt->bind_param("issi", $category_id, $animal_name, $description, $location_id);
-        $stmt->execute();
-
-        // Get the inserted id of animals
-        $animal_id = $stmt->insert_id;
-        $upload_success = true;
-
-        // Update the images into pictures animals
-        if (isset($_FILES["images"])) 
-        {
-            $sqlstr = "DELETE FROM animal_gallery WHERE animal_id = $post_id";
-            $result = $conn->query($sqlstr);
-            $imgs = $_FILES["images"];
-            $num_of_imgs = count($imgs['name']);
-
-            for ($i = 0; $i < $num_of_imgs; $i++) 
-            {
-                $img_name = $imgs['name'][$i];
-                $tmp_name = $imgs['tmp_name'][$i];
-                $img_error = $imgs['error'][$i];
-
-                if ($img_error === 0) 
-                {
-                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-                    $img_ex_lc = strtolower($img_ex);
-                    $allowed_exs = array('jpg', 'jpeg', 'png', 'svg', 'gif', 'jfif');
-
-                    if (in_array($img_ex_lc, $allowed_exs)) 
-                    {
-                        $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
-                        
-                        // Path for Laptop
-                        $img_upload_path = 'D:\XAMPP\htdocs\marine-project\assets\pictures/' . $new_img_name;
-                        //$img_upload_path = 'F:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
-
-                        $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
-                        $stmt = $conn->prepare($sqlstr);
-                        $stmt->bind_param("si", $new_img_name, $category_id);
-                        $stmt->execute();
-                        $result = $stmt->affected_rows;
-                        $picture_id = $stmt->insert_id;
-
-                        if (!$result) 
-                        {
-                            $upload_success == false;
-                        }
-                        
-                        move_uploaded_file($tmp_name, $img_upload_path);
-
-                        // Insert into animal_gallery table
-                        $gallery_insert_query = "INSERT INTO animal_gallery (animal_id, picture_id) VALUES (?, ?)";
-                        $stmt = $conn->prepare($gallery_insert_query);
-                        $stmt->bind_param("ii", $animal_id, $picture_id);
-                        $stmt->execute();
-                    } 
-                    else 
-                    {
-                        $upload_success = false;
-                    }
-                } 
-                else 
-                {
-                    $upload_success = false;
-                }
-            }
-        }
-
-        if (!$upload_success) 
-        {
-            $conn->rollBack();
-            $_SESSION['message'] = 'Ops! Something went wrong';
-            header("Location: post-edit.php?id=$post_id");
-            exit();
-        }
-
-        $conn->commit();
-        $_SESSION['message'] = 'Post updated successfully!';
-        header("Location: post-view.php");
-        exit();
-    } 
-    catch (Exception $e) 
-    {
-        $conn->rollBack();
-        $upload_success = false;
-        $_SESSION['message'] = "Error: " . $e->getMessage();
-        header("Location: post-edit.php?id=$post_id");
-        exit();
-    }
-}
-
 // Post Add
 if(isset($_POST['post_add'])) 
 {
@@ -159,8 +53,8 @@ if(isset($_POST['post_add']))
                         $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
                         
                         // Path for Laptop
-                        $img_upload_path = 'D:\XAMPP\htdocs\marine-project\assets\pictures/' . $new_img_name;
-                        //$img_upload_path = 'F:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
+                        // $img_upload_path = 'D:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
+                        $img_upload_path = 'F:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
 
                         $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
                         $stmt = $conn->prepare($sqlstr);
