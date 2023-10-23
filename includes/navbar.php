@@ -20,28 +20,28 @@
 
           <ul class="navbar-list">
             <li class="navbar-item">
-              <a href="#" class="navbar-link active">Home</a>
+              <a href="<?=ROOT_URL?>" class="navbar-link active">Home</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">About</a>
+              <a href="<?= ROOT_URL?>about-us.php" class="navbar-link">About</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Event</a>
+              <a href="<?= ROOT_URL?>event.php" class="navbar-link">Event</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Sea Life</a>
+              <a href="<?= ROOT_URL?>categories.php" class="navbar-link">Sea Life</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Contact</a>
+              <a href="<?= ROOT_URL?>contact-us.php" class="navbar-link">Contact</a>
             </li>
           </ul>
 
           <div class="header-action">
-            <a href="#" class="login-btn">Login</a>
+            <a href="<?= ROOT_URL?>login.php" class="login-btn">Login</a>
 
             <a href="#" class="btn btn-primary">Sign Up</a>
           </div>

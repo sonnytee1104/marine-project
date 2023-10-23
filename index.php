@@ -313,6 +313,10 @@ include('includes/header.php');
           </div>
         </section>
         <!-- GALLERY -->
+        <?php
+          $sqlstr_gallery = "SELECT * from pictures WHERE cate_id = 99";
+          
+        ?>
         <section class="section gallery">
           <div class="container">
             <p class="section-subtitle">Photo Gallery</p>

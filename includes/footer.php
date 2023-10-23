@@ -147,6 +147,7 @@
       </div>
     </footer>
     <!-- Js link -->
+    <script src="<?= ROOT_URL; ?>assets/js/details.js"></script>
     <script src="<?= ROOT_URL; ?>assets/js/script.js"></script>
     <!-- ionicon link -->
     <script
