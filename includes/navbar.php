@@ -43,6 +43,6 @@
           <div class="header-action">
             <a href="<?= ROOT_URL?>login.php" class="login-btn">Login</a>
 
-            <a href="#" class="btn btn-primary">Sign Up</a>
+            <a href="<?= ROOT_URL?>register.php" class="btn btn-primary">Sign Up</a>
           </div>
         </nav>

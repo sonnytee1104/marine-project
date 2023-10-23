@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="./event.css" />
-    <!-- CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
-    <section class="section event" aria-label="event" id="section_1">
+<?php
+require_once('config.php');
+include('includes/header.php');
+?>
+<section class="section event" aria-label="event" id="section_1">
       <div class="container">
         <div class="title-wrapper">
           <h2 class="h2 title section-title">Top Values For You</h2>
@@ -77,8 +57,8 @@
           </p>
         </div>
       </div>
-    </section>
-    <section class="schedule section-padding" id="section_2">
+</section>
+<section class="schedule section-padding" id="section_2">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -431,17 +411,9 @@
           </div>
         </div>
       </div>
-    </section>
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <!-- ionicon link -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
-</html>
+</section>
+    
+<?php 
+    include('includes/footer.php');
+?>
+

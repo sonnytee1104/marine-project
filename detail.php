@@ -45,10 +45,45 @@ include('includes/header.php');
                 <h2 class="h2 title main-cate-title">
                   Marine Life Encyclopedia
                 </h2>
+                <?php 
+                if(isset($_GET['id']))
+                {   
+                    $animal_id = sanitize($_GET['id']);
+                    $sqlstr = "SELECT * FROM animals WHERE id='$animal_id' ";
+                    $result = $conn->query($sqlstr);
+                    if($result->num_rows > 0)
+                    {
+                        $row = $result->fetch_assoc();
+                        $name = $row['animal_name'];
+                        $cate_id = $row['category'];
+                        $loca_id = $row['location_id'];
+                        $animal_des = $row['description'];
+                    // Get the categories name
+                    $sqlstr = "SELECT cate_name FROM categories WHERE id = $category_id";
+                    $result_cate = $conn->query($sqlstr); 
+                    if(!$result_cate)
+                    {
+                        echo "<h4> There are no location available </h4>";    
+                    }
+                    $category = $result_cate->fetch_assoc()['cate_name'] ?? null;
+                    dd($category);
+
+                    // Get the location name
+                    $sqlstr = "SELECT places FROM location WHERE id = $location_id";
+                    $result_loca = $conn->query($sqlstr); 
+                    if(!$result_loca)
+                    {
+                        echo "<h4> There are no location available </h4>";                        
+                    }
+                    $location = $result_loca->fetch_assoc()['places'] ?? null;
+                           
+                    }
+                };
+                ?>
                 <h1 class="h1 title main-cate-title">
-                  Cephalopods, Crustaceans & Other Shellfish
+                  <?= $category ?>
                 </h1>
-                <p class="main-cate-name">Name: Acorn Barnacle</p>
+                <p class="main-cate-name"><?= $name ?></p>
               </div>
             </div>
           </section>
@@ -57,23 +92,19 @@ include('includes/header.php');
               <div class="text-infor-ani">
                 <h2 class="h2 title infor-title">About</h2>
                 <p class="content">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Dicta magni sint fuga eligendi excepturi placeat assumenda
-                  suscipit itaque odit culpa? Cupiditate delectus consequatur
-                  quasi nulla, debitis enim ipsam in ut.
+                  <?= $animal_des ?>
                 </p>
                 <div class="detail">
                   <div class="distribution">
                     <div class="title">
                         <ion-icon name="earth"></ion-icon>
-                        <p>Distribution</p>
+                        <p>Location</p>
                     </div>
                     <div class="content">
-                      Cold temperate to sub-polar latitudes of the Northern
-                      Hemisphere
+                      <?= $location ?>
                     </div>
                   </div>
-                  <div class=" habitat">
+                  <!-- <div class=" habitat">
                     <div class="title">
                         <ion-icon name="fish"></ion-icon>
                         <p>Habitat</p>
@@ -86,7 +117,7 @@ include('includes/header.php');
                         <p>Feeding Habits</p>
                     </div>
                     <div class="content">Filter feeder</div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="img-infor-ani">
@@ -107,7 +138,7 @@ include('includes/header.php');
                 </div>
               </div>
             </div>
-          </section>
+          <!-- </section>
             <section class="section seli" aria-label="seli">
                 <div class="container">
                   <div class="seli-list">
@@ -537,7 +568,7 @@ include('includes/header.php');
                   </div> 
                   <div class="pagination"></div>
                 </div>
-          </section>
+          </section> -->
         </div>
       </article>
     </main>

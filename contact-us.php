@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - Jenkinson Sea Life</title>
-    <meta name="title" content="Jenkinson - Explore the sea life" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/contact.css" />
-  </head>
-  <body>
+<?php
+require_once('config.php');
+include('includes/header.php');
+?>
     <section class="contact-section">
       <div class="contact-bg">
         <h3>Get in Touch with Us</h3>
@@ -125,13 +113,6 @@
       </div>
     </section>
     <!-- ionicon link -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
-</html>
+    <?php 
+    include('includes/footer.php');
+    ?>

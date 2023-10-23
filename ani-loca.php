@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="./ani-loca.css" />
-  </head>
-  <body>
-    <section class="main-ani-loca">
+<?php
+require_once('config.php');
+include('includes/header.php');
+?>
+
+<section class="main-ani-loca">
       <div class="warpper">
         <div class="card">
           <img src="./assets/img/ani.jpg" />
@@ -43,6 +29,8 @@
           </div>
         </div>
       </div>
-    </section>
-  </body>
-</html>
+</section>
+
+<?php 
+    include('includes/footer.php');
+?>

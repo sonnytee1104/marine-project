@@ -35,7 +35,8 @@ include('includes/header.php');
                             if ($result) 
                             {
                                 $counter = 1;
-                                while ($row = $result->fetch_assoc()) {
+                                while ($row = $result->fetch_assoc()) 
+                                {
                                     $id = $row['id'];
                                     $name = $row['places'];
                                     echo '<tr>

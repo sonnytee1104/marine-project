@@ -149,6 +149,7 @@
     <!-- Js link -->
     <script src="<?= ROOT_URL; ?>assets/js/details.js"></script>
     <script src="<?= ROOT_URL; ?>assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- ionicon link -->
     <script
       type="module"

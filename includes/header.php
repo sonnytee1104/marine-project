@@ -22,11 +22,16 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>detail.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/contact.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/event.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/about-us.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/ani-loca.css" />
   </head>
   <body>
     <!-- preloader -->

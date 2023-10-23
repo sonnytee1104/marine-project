@@ -2,7 +2,6 @@
 session_start();
 require_once('config.php');
 include('includes/header.php');
-include('includes/navbar.php');
 if (isset($_POST['register'])) {
     $name = sanitize($_POST['username']);
     $email = sanitize($_POST['email']);
@@ -65,48 +64,50 @@ if (isset($_POST['register'])) {
     }   
 }
 ?>
-<div class="py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
+<main class = "d-flex align-items-center justify-content-center"> 
+    <article>
+        <section class = "section gallery">   
+            <div class="container d-flex align-items-center justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                    <?php
+                    include("message.php");
+                    ?>
 
-            <?php
-            include("message.php");
-            ?>
+                        <div class="cart-header">
+                            <h4>Register</h4>
+                        </div>
+                        <div class="cart-body">
 
-                <div class="cart-header">
-                    <h4>Register</h4>
-                </div>
-                <div class="cart-body">
-
-                    <form action="" method="post">
-                        <div class="form-group-mb-3">
-                            <label for="">Username</label>
-                            <input required name="username" type="text" placeholder="Enter Username" class="form-control" autocomplete="off">
-                        </div>
-                        <div class="form-group-mb-3">
-                            <label for="">Email</label>
-                            <input required name="email" type="email" placeholder="Enter Email" class="form-control" autocomplete="off">
-                        </div>
-                        <div class="form-group-mb-3">
-                            <label for="">Password</label>
-                            <input required name="password" type="password" placeholder="Enter Password" class="form-control" autocomplete="off">
-                        </div>
-                        <div class="form-group-mb-3">
-                            <label for="">Confirm Password</label>
-                            <input required name="cpassword" type="password" placeholder="Confirm Your Password" class="form-control" autocomplete="off">
-                        </div>
-                        <div class="form-group-mb-3">
-                            <button name="register" type="submit" class="btn btn-primary mb-3 mt-2">Register Now</button>
-                        </div>
-                    </form>
-                        
+                            <form action="" method="post">
+                                <div class="form-group-mb-3">
+                                    <label for="">Username</label>
+                                    <input required name="username" type="text" placeholder="Enter Username" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group-mb-3">
+                                    <label for="">Email</label>
+                                    <input required name="email" type="email" placeholder="Enter Email" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group-mb-3">
+                                    <label for="">Password</label>
+                                    <input required name="password" type="password" placeholder="Enter Password" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group-mb-3">
+                                    <label for="">Confirm Password</label>
+                                    <input required name="cpassword" type="password" placeholder="Confirm Your Password" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group-mb-3">
+                                    <button name="register" type="submit" class="btn btn-primary mb-3 mt-2">Register Now</button>
+                                </div>
+                            </form>
+                                
+                            </div>
                     </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
+        </section>
+    </article>
+</main>
 <?php 
 include('includes/footer.php');
 ?>
