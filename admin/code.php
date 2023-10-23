@@ -53,8 +53,9 @@ if(isset($_POST['post_add']))
                         $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
                         
                         // Path for Laptop
-                        // $img_upload_path = 'D:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
-                        $img_upload_path = 'F:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
+                        $img_upload_path = $_SERVER['DOCUMENT_ROOT'] . '\marine-project\assets\pictures/' . $new_img_name;
+                        // Path for PC
+                        //$img_upload_path = 'F:\Xampp\htdocs\marine-project\assets\pictures/' . $new_img_name;
 
                         $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
                         $stmt = $conn->prepare($sqlstr);

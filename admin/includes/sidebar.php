@@ -44,16 +44,16 @@
                 </a>
                 <div class="collapse" id="collapseLocation" aria-labelledby="Location" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="post-add.php">Add Location</a>
-                        <a class="nav-link" href="post-view.php">View Location</a>
+                        <a class="nav-link" href="location-add">Add Location</a>
+                        <a class="nav-link" href="location-view.php">View Location</a>
                     </nav>
                 </div>
 
 
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="img-view" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                    Pages
+                    Pictures
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">

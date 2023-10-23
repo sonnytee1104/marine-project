@@ -31,7 +31,7 @@ include('includes/header.php');
                 as possible as possible
               </p>
               <div class="wrapper">
-                <a href="#" class="btn btn-secondary">
+                <a href="categories.php" class="btn btn-secondary">
                   <span class="span">Explore Now</span>
 
                   <ion-icon
@@ -40,7 +40,7 @@ include('includes/header.php');
                   ></ion-icon>
                 </a>
 
-                <button class="main-btn">
+                <!-- <button class="main-btn">
                   <div class="btn-img">
                     <img
                       src="./assets/img/main-button-img.jpg"
@@ -52,7 +52,7 @@ include('includes/header.php');
                     <ion-icon name="play" aria-hidden="true"></ion-icon>
                   </div>
                   <p class="text">Watch our Story</p>
-                </button>
+                </button> -->
               </div>
             </div>
             <figure class="main-banner">
@@ -149,13 +149,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Dumbo Octopus </a>
                     </h3>
                     <address class="card-text">Deep open ocean</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.7
-                      </span>
-                      <p class="rating-text">(11.1k Review)</p>
-                    </div>
+                
                   </div>
                 </div>
               </li>
@@ -178,13 +172,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Giant Barrel Sponge </a>
                     </h3>
                     <address class="card-text">The Caribbean Sea</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.6
-                      </span>
-                      <p class="rating-text">(16.8k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -209,13 +197,7 @@ include('includes/header.php');
                     <address class="card-text">
                       Southeast Asia and Australia
                     </address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.7
-                      </span>
-                      <p class="rating-text">(120k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -238,13 +220,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Blue Whale </a>
                     </h3>
                     <address class="card-text">North Pacific Ocean</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.0
-                      </span>
-                      <p class="rating-text">(123.4k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -267,13 +243,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Flatback Turtle </a>
                     </h3>
                     <address class="card-text">North Australia</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.5
-                      </span>
-                      <p class="rating-text">(111.1k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -298,23 +268,19 @@ include('includes/header.php');
                     <address class="card-text">
                       Macquarie Island, Southern Ocean
                     </address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        5
-                      </span>
-                      <p class="rating-text">(98.03k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
             </ul>
-            <a href="#" class="btn btn-primary">Meet Them</a>
+            <a href="<?= ROOT_URL ?>categories.php" class="btn btn-primary">Meet Them</a>
           </div>
         </section>
         <!-- GALLERY -->
         <?php
-          $sqlstr_gallery = "SELECT * from pictures WHERE cate_id = 99";
+          $sqlstr_gallery = "SELECT * from pictures";
+          $result_gallery = $conn->query($sqlstr_gallery);
+          
           
         ?>
         <section class="section gallery">

@@ -38,7 +38,7 @@ include('includes/header.php');
     <!-- Title -->
     <main>
       <article>
-        <div class="detail-animals mt-5px">
+        <div class="detail-animals">
           <section class="section title category-sea-life" aria-label="title">
             <div class="container">
               <div class="main-cate-content">

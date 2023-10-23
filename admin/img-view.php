@@ -12,8 +12,8 @@ include('includes/header.php');
 
             <div class="card">
                 <div class="card-header">
-                    <h4>View Animals and Pictures
-                        <a href="post-add.php" class="btn btn-primary float-end">Add Post</a>
+                    <h4>View Pictures
+                        <a href="img-add.php" class="btn btn-primary float-end">Add Pictures</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -23,9 +23,6 @@ include('includes/header.php');
                                 <tr>
                                     <th>No.</th>
                                     <th>Category</th>
-                                    <th>Location</th>
-                                    <th>Animal Name</th>
-                                    <th>Description</th>
                                     <th>Images</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -33,17 +30,15 @@ include('includes/header.php');
                             </thead>
                             <tbody>
                                 <?php 
-                                $sql_animals = "SELECT id, category, location_id, animal_name, description FROM animals";
-                                $result_animals = $conn->query($sql_animals);
+                                $sql_pic = "SELECT * FROM pictures";
+                                $result_pic = $conn->query($sql_pic);
                                 
-                                if ($result_animals) {
+                                if ($result_pic) {
                                     $counter = 1;
-                                    while ($row_animals = $result_animals->fetch_assoc()) {
-                                        $id = $row_animals['id'];
-                                        $category_id = $row_animals['category'];
-                                        $location_id = $row_animals['location_id'];
-                                        $animal_name = $row_animals['animal_name'];
-                                        $description = $row_animals['description'];
+                                    while ($row_pic = $result_pic->fetch_assoc()) {
+                                        $id = $row_pic['id'];
+                                        $category_id = $row_pic['cate_id'];
+                                        $img = $row_pic['img_path'];
 
                                         // Get the categories name
                                         $sqlstr = "SELECT cate_name FROM categories WHERE id = $category_id";
@@ -55,41 +50,13 @@ include('includes/header.php');
                                             exit();
                                         }
                                         $category = $result_cate->fetch_assoc()['cate_name'] ?? null;
-
-                                        // Get the location name
-                                        $sqlstr = "SELECT places FROM location WHERE id = $location_id";
-                                        $result_loca = $conn->query($sqlstr); 
-                                        if(!$result_loca)
-                                        {
-                                            $_SESSION['message'] = "Ops! Can't not get the location";
-                                            header("Location: post-view.php");
-                                            exit();
-                                        }
-                                        $location = $result_loca->fetch_assoc()['places'] ?? null;
                                         
                                         // Get images for the current animal
-                                        $sql_gallery = "SELECT pictures.img_path 
-                                                        FROM animal_gallery 
-                                                        INNER JOIN pictures ON animal_gallery.picture_id = pictures.id
-                                                        WHERE animal_gallery.animal_id = $id";
-                                        $result_images = $conn->query($sql_gallery);
-                                        
                                         
                                         echo '<tr>
                                             <th scope="row">'.$counter.'</th>
                                             <td>'.$category.'</td>
-                                            <td>'.$location.'</td>
-                                            <td>'.$animal_name.'</td>
-                                            <td>'.$description.'</td>
-                                            <td>';
-                                
-                                        if ($result_images && $result_images->num_rows > 0) {
-                                            while ($row_images = $result_images->fetch_assoc()) {
-                                                echo '<img src="../assets/pictures/'.$row_images['img_path'].'" alt="Animal Image" style="max-width: 100px; max-height: 100px;"> ';
-                                            }
-                                        }
-                                
-                                        echo '</td>
+                                            <td><img src="../assets/pictures/'.$img.'" alt="Animal Image" style="max-width: 100px; max-height: 100px;"></td>
                                             <td>
                                                 <button class="btn btn-info"><a href="post-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                             </td>
