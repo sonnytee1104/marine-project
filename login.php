@@ -1,7 +1,12 @@
 <?php 
-require_once "config.php"; 
-if (isset($_POST['login'])) {
-  dd($_POST['login']);
+require_once "config.php";
+if(isset($_POST["submit"])) {
+  try {
+    $username = sanitize($_POST['username']);
+    $userpass = sanitize($_POST['userpassword']);
+  }catch(Exception $e){
+    echo $e->getMessage();
+}
 }
 ?>
 <!DOCTYPE html>
@@ -13,14 +18,14 @@ if (isset($_POST['login'])) {
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./pages/css/style.css">
+    <link rel="stylesheet" href="./pages/css/style.css" />
     <title>Login and Registration</title>
   </head>
   <body>
     <div class="wrapper">
       <nav class="nav">
         <div class="nav-logo">
-          <img src="./assets/images/Logo.png" alt="" />
+          <img src="./.././assets/images/logo.png" alt="" />
         </div>
         <div class="nav-menu" id="navMenu">
           <ul>
@@ -56,6 +61,7 @@ if (isset($_POST['login'])) {
           </div>
           <div class="input-box">
             <input
+              name="username"
               type="text"
               class="input-field"
               placeholder="Username or Email"
@@ -63,11 +69,11 @@ if (isset($_POST['login'])) {
             <i class="bx bx-user"></i>
           </div>
           <div class="input-box">
-            <input type="pasword" class="input-field" placeholder="Password" />
+            <input name="userpassword" type="pasword" class="input-field" placeholder="Password" />
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
-            <input name="login" type="submit" class="submit" value="Sign In" />
+            <input type="submit" class="submit" value="Sign In" />
           </div>
           <div class="two-col">
             <div class="one">
@@ -79,9 +85,9 @@ if (isset($_POST['login'])) {
             </div>
           </div>
         </div>
-        </form>
+      </form>
         <!------------------ registration form ------------------>
-        <form name="register_form" action="post">
+      <form name="registration_form" action="post">
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -122,7 +128,7 @@ if (isset($_POST['login'])) {
         </div>
       </div>
     </div>
-    </form>
+  </form>
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
