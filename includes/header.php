@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/event.css" />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/about-us.css" />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/ani-loca.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/categories.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/details.css" />
   </head>
   <body>
     <!-- preloader -->
