@@ -31,7 +31,7 @@ include('includes/header.php');
                             </thead>
                             <tbody>
                             <?php 
-                            $sqlstr = "SELECT * FROM categories";
+                            $sqlstr = "SELECT * FROM categories WHERE status = 0";
                             $result = $conn->query($sqlstr);
                             if ($result) 
                             {

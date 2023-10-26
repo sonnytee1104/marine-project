@@ -24,3 +24,28 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+
+$(function getCateForPic()
+{
+    // Trigger the Ajax request when the category selection changes
+    $('select[name="pic_category"]').on('change', function(){
+        var selectedCategory = $(this).val();
+
+        // Make an Ajax request
+        $.ajax({
+            url: 'img-view.php', 
+            method: 'POST',
+            data: {category: selectedCategory},
+            success: function(response){
+                // Update the table body with the received data
+                $('table tbody').html(response);
+            },
+            error: function(){
+                alert('Error fetching data.');
+            }
+        });
+    });
+});
+
+
