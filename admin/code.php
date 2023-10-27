@@ -1,10 +1,160 @@
 <?php
 include('authentication.php');
 
+if(isset($_POST['post_edit']))
+{
+    $category_id = sanitize($_POST['category']);
+    $location_id = sanitize($_POST['location']);
+    $animal_name = sanitize($_POST['aname']);
+    $description = sanitize($_POST['description']);
+    $post_id = sanitize($_POST['post_id']);
 
+    $conn->begin_transaction();
+    try
+    {
+        $animal_update_query = "UPDATE animals SET category = ?, animal_name = ?, description = ?, location_id = ? WHERE id = $post_id";
+        $stmt = $conn->prepare($animal_update_query);
+        $stmt->bind_param("issi", $category_id, $animal_name, $description, $location_id);
+        $stmt->execute();
+
+        // Get the id of animals
+        $animal_id = $post_id;
+        $upload_success = true;
+
+        // Insert the images into pictures animals
+        if (isset($_FILES["images"])) 
+        {
+            $imgs = $_FILES["images"];
+            $num_of_imgs = count($imgs['name']);
+            $img_size = $imgs['size'][0];
+            if ($img_size !== 0)
+            {
+                // Delete old pictures
+                
+                $gallery_delete_query = "DELETE FROM animal_gallery WHERE animal_id = ?";
+                $stmt = $conn->prepare($gallery_delete_query);
+                $stmt->bind_param("i", $animal_id);
+                $stmt->execute();
+
+                for ($i = 0; $i < $num_of_imgs; $i++) 
+                {
+                    $img_name = $imgs['name'][$i];
+                    $tmp_name = $imgs['tmp_name'][$i];
+                    $img_error = $imgs['error'][$i];
+                    $img_size = $imgs['size'][$i];
+
+                    if ($img_error === 0 && $img_size > 0 && $img_size < 3 * 1024 * 1024) 
+                    {
+                        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                        $img_ex_lc = strtolower($img_ex);
+                        $allowed_exs = array('jpg', 'jpeg', 'png', 'svg', 'gif', 'jfif');
+
+                        if (in_array($img_ex_lc, $allowed_exs)) 
+                        {
+                            $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
+                            
+                            // Path for img store
+                            $img_upload_path = $_SERVER['DOCUMENT_ROOT'] . '\marine-project\assets\pictures/' . $new_img_name;
+
+                            $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
+                            $stmt = $conn->prepare($sqlstr);
+                            $stmt->bind_param("si", $new_img_name, $category_id);
+                            $stmt->execute();
+                            $result = $stmt->affected_rows;
+                            $picture_id = $stmt->insert_id;
+
+                            if (!$result) 
+                            {
+                                $upload_success == false;
+                            }
+
+                            move_uploaded_file($tmp_name, $img_upload_path);   
+                            // Insert into animal_gallery table
+                            $gallery_insert_query = "INSERT INTO animal_gallery (animal_id, picture_id) VALUES (?, ?)";
+                            $stmt = $conn->prepare($gallery_insert_query);
+                            $stmt->bind_param("ii", $animal_id, $picture_id);
+                            $stmt->execute();
+                        } 
+                        else 
+                        {
+                            $upload_success == false;
+                        }
+                    } 
+                    else 
+                    {
+                        $upload_success == false;
+                    }
+                }
+            }
+            
+        }
+
+        if (!$upload_success) 
+        {
+            $conn->rollBack();
+            $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
+            header("Location: post-edit?id=$post_id.php");
+            exit();
+        }
+
+        $conn->commit();
+        $_SESSION['message'] = 'Post updated successfully!';
+        header("Location: post-view.php");
+        exit();
+
+    }
+    catch (Exception $e) 
+    {
+        $conn->rollBack();
+        $upload_success = false;
+        $_SESSION['message'] = "Error: " . $e->getMessage();
+        header("Location: post-add.php");
+        exit();
+    }
+}
+
+
+// Post Delete
 if(isset($_POST['post_delete']))
 {
+    $id = sanitize($_POST['post_delete']);
 
+    $conn -> begin_transaction();
+    try
+    {
+        $error = 0;
+        $sqlstr_pic = "DELETE from animal_gallery WHERE animal_id = $id";
+        $result = $conn->query($sqlstr_pic);
+        if(!$result)
+        {
+         $error++;
+        } 
+        $sqlstr_animal = "DELETE from animals WHERE id = $id";
+        $result = $conn->query($sqlstr_animal);
+        if(!$result)
+        {
+         $error++;
+        } 
+        if($error > 0)
+        {
+            $conn->rollBack();
+            $_SESSION['message'] = 'Error deleting post';
+            header("Location: post-view.php");
+            exit();
+        }
+
+        $conn->commit();
+        $_SESSION['message'] = 'Deleted Succesfully';
+        header("Location: post-view.php");
+        exit();
+    }
+    catch (Exception $e) 
+    {
+        $conn->rollBack();
+        $_SESSION['message'] = "Error: " . $e->getMessage();
+        header("Location: post-view.php");
+        exit();
+    } 
 }
 
 
@@ -41,8 +191,9 @@ if(isset($_POST['post_add']))
                 $img_name = $imgs['name'][$i];
                 $tmp_name = $imgs['tmp_name'][$i];
                 $img_error = $imgs['error'][$i];
+                $img_size = $imgs['size'][$i];
 
-                if ($img_error === 0) 
+                if ($img_error === 0 && $img_size > 0 && $img_size < 3 * 1024 * 1024) 
                 {
                     $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                     $img_ex_lc = strtolower($img_ex);

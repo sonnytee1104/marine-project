@@ -47,7 +47,7 @@ include('includes/header.php');
                                     </td>
                                     <td>
                                         <form action="code.php" method="post">
-                                        <button type="submit" class="btn btn-danger" name="location_delete" value="'.$id.'">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-delete" name="location_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>
                                     </tr>';

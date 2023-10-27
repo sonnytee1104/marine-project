@@ -49,7 +49,7 @@ include('includes/header.php');
                                     </td>
                                     <td>
                                         <form action="code.php" method="post">
-                                        <button type="submit" class="btn btn-danger" name="cate_delete" value="'.$id.'">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-delete" name="cate_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>
                                     </tr>';
@@ -74,7 +74,27 @@ include('includes/header.php');
         </div>
     </div>  
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteButtons = document.querySelectorAll('.btn-delete');
 
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var confirmDelete = confirm('Are you sure you want to delete this?');
+
+            if (confirmDelete) {
+                var form = button.closest('form');
+                form.submit();
+            } else {
+                console.log("nothing here");
+            }
+            });
+        });
+});
+
+</script>
 <?php 
 include('includes/footer.php');
 include('includes/scripts.php');

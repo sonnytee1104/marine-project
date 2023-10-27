@@ -25,6 +25,25 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     var deleteButtons = document.querySelectorAll('.btn-delete');
+  
+//     deleteButtons.forEach(function(button) {
+//       button.addEventListener('click', function(e) {
+//         e.preventDefault();
+  
+//         var confirmDelete = confirm('Are you sure you want to delete this?');
+  
+//         if (confirmDelete) {
+//           var href = button.getAttribute('href');
+//           window.location.href = 'code.php'; // Redirect to the specified URL
+//         } else {
+//           console.log("nothing here");
+//         }
+//       });
+//     });
+//   });
+  
 
 $(function getCateForPic()
 {
