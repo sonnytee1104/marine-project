@@ -53,7 +53,7 @@ $(function getCateForPic()
 
         // Make an Ajax request
         $.ajax({
-            url: 'img-view.php', 
+            url: 'img-view2.php', 
             method: 'POST',
             data: {category: selectedCategory},
             success: function(response){
@@ -66,5 +66,7 @@ $(function getCateForPic()
         });
     });
 });
+
+
 
 
