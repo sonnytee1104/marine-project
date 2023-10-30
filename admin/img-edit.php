@@ -19,13 +19,15 @@ include('includes/header.php');
                     <?php 
                     if(isset($_GET['id']))
                     {
-                        $img_id = sanitize(isset($_GET['id']));
+                        $img_id = sanitize($_GET['id']);
+                        
                         $sqlstr = "SELECT * FROM pictures WHERE id = $img_id";
                         $result = $conn->query($sqlstr);
                         if($result->num_rows > 0)
                         {
                             $row = $result->fetch_assoc();
-                            $cate_id = $row['category'];
+                            
+                            $cate_id = $row['cate_id'];
                             $img_path = $row['img_path'];
                         ?>
                         <form action="code.php" method="post" enctype="multipart/form-data">
@@ -66,12 +68,15 @@ include('includes/header.php');
                                 <label for="">Images</label>
                                 <input type="file" name ="image" class="form-control" >
                                 <?php 
-                                    echo '<img src="../assets/pictures/'.$img_path.'" alt="Animal Image" style="max-width: 100px; max-height: 100px;"> ';
+                                    echo '<img src="../assets/pictures/'.$img_path.'" alt="Animal Image" style="max-width: 400px; max-height: 400px;"> ';
                                 ?>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <button name="img_add" type="submit" class="btn btn-primary">Update Picture</button>
+                                <input type="hidden" value="<?= $img_id ?>" name="pic_id">
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <button name="img_add" type="submit" class="btn btn-primary">Update Picture</button>
+                            </div>                          
                         </div>
 
                         </form>

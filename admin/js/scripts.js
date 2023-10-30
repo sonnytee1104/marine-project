@@ -25,24 +25,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     var deleteButtons = document.querySelectorAll('.btn-delete');
-  
-//     deleteButtons.forEach(function(button) {
-//       button.addEventListener('click', function(e) {
-//         e.preventDefault();
-  
-//         var confirmDelete = confirm('Are you sure you want to delete this?');
-  
-//         if (confirmDelete) {
-//           var href = button.getAttribute('href');
-//           window.location.href = 'code.php'; // Redirect to the specified URL
-//         } else {
-//           console.log("nothing here");
-//         }
-//       });
-//     });
-//   });
   
 
 $(function getCateForPic()
@@ -59,13 +41,23 @@ $(function getCateForPic()
             success: function(response){
                 // Update the table body with the received data
                 $('table tbody').html(response);
+                bindDeleteConfirmation();
             },
             error: function(){
                 alert('Error fetching data.');
             }
         });
     });
+     // Bind the delete confirmation initially
+     bindDeleteConfirmation();
 });
+
+
+function bindDeleteConfirmation() {
+    $('form[name="deleteForm"]').submit(function () {
+        return confirm('Are you sure you want to delete this item');
+    });
+}
 
 
 

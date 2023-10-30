@@ -4,7 +4,75 @@ include('authentication.php');
 // Pictures edit
 if(isset($_POST['img_edit']))
 {
+    $category_id = sanitize($_POST['category']);
+    $img = $_FILES['image'];
+    $pic_id = sanitize($_POST['pic_id']);
+    if (!empty($img['name']))
+    {
+        $img_name = $img['name'];
+        $tmp_name = $img['tmp_name'];
+        $img_error = $img['error'];
+        $img_size = $img['size'];
+        $upload_success = true;
+            
+        if ($img_error === 0 && $img_size > 0 && $img_size < 3 * 1024 * 1024) 
+        {
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            $allowed_exs = array('jpg', 'jpeg', 'png', 'svg', 'gif', 'jfif');
 
+            if (in_array($img_ex_lc, $allowed_exs)) 
+            {
+                $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
+                
+                // Path for Laptop
+                $img_upload_path = $_SERVER['DOCUMENT_ROOT'] . '\marine-project\assets\pictures/' . $new_img_name;
+
+                $sqlstr = "UPDATE pictures SET img_path = ?, cate_id = ?";
+                $stmt = $conn->prepare($sqlstr);
+                $stmt->bind_param("si", $new_img_name, $category_id);
+                $stmt->execute();
+                $result = $stmt->affected_rows;
+
+                if (!$result) 
+                {
+                    $upload_success = false;
+                    $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
+                    header("Location: img-edit?id=$pic_id.php");
+                    exit();
+                }
+                
+                move_uploaded_file($tmp_name, $img_upload_path);
+                $_SESSION['message'] = 'Picture updated successfully!';
+                header("Location: img-view.php");
+                exit();
+            }
+        }
+        else 
+        {
+            $upload_success = false;
+        }
+    }
+    else 
+    {
+        $sqlstr = "UPDATE pictures SET cate_id = ?";
+        $stmt = $conn->prepare($sqlstr);
+        $stmt->bind_param("i", $category_id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if(!result)
+        {
+            $upload_success = false;
+        }
+    }
+    if (!$upload_success) 
+    {
+        $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
+        header("Location: img-edit?id=$pic_id.php");
+        exit();
+    }
+    
+    
 }
 
 
@@ -651,3 +719,7 @@ if (isset($_POST['update_user']))
         exit();
     }
 }
+
+$_SESSION['message'] = 'Access denied';
+header('location: index.php');
+exit();

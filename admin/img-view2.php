@@ -31,13 +31,13 @@
                     echo '<tr>
                         <th scope="row">'.$counter.'</th>
                         <td>'.$category.'</td>
-                        <td><img src="../assets/pictures/'.$img.'" alt="Animal Image" style="max-width: 100px; max-height: 100px;"></td>
+                        <td><img src="../assets/pictures/'.$img.'" alt="pictures" style="max-width: 100px; max-height: 100px;"></td>
                         <td>
                             <button class="btn btn-info"><a href="img-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                         </td>
                         <td>
-                            <form action="code.php" method="post">
-                                <button type="submit" class="btn btn-danger" name="animal_delete" value="'.$id.'">Delete</button>
+                            <form action="code.php" method="post" name="deleteForm">
+                                <button  type="submit" class="btn btn-danger" name="img_delete" value="'.$id.'">Delete</button>
                             </form>
                         </td>
                     </tr>';
