@@ -1,6 +1,162 @@
 <?php
 include('authentication.php');
 
+// Pictures edit
+if(isset($_POST['img_edit']))
+{
+
+}
+
+
+// Pictures add
+if(isset($_POST['img_add']))
+{   
+    $category_id = sanitize($_POST['category']);
+    $img = $_FILES['image'];
+    if (!empty($img['name']))
+    {
+        $img_name = $img['name'];
+        $tmp_name = $img['tmp_name'];
+        $img_error = $img['error'];
+        $img_size = $img['size'];
+        $upload_success = true;
+            
+        if ($img_error === 0 && $img_size > 0 && $img_size < 3 * 1024 * 1024) 
+        {
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            $allowed_exs = array('jpg', 'jpeg', 'png', 'svg', 'gif', 'jfif');
+
+            if (in_array($img_ex_lc, $allowed_exs)) 
+            {
+                $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
+                
+                // Path for Laptop
+                $img_upload_path = $_SERVER['DOCUMENT_ROOT'] . '\marine-project\assets\pictures/' . $new_img_name;
+
+                $sqlstr = "INSERT INTO pictures(img_path, cate_id) VALUES (?, ?)";
+                $stmt = $conn->prepare($sqlstr);
+                $stmt->bind_param("si", $new_img_name, $category_id);
+                $stmt->execute();
+                $result = $stmt->affected_rows;
+
+                if (!$result) 
+                {
+                    $upload_success = false;
+                    $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
+                    header("Location: img-add.php");
+                    exit();
+                }
+                
+                move_uploaded_file($tmp_name, $img_upload_path);
+                $_SESSION['message'] = 'Picture added successfully!';
+                header("Location: img-view.php");
+                exit();
+            }
+        }
+        else 
+        {
+            $upload_success = false;
+        }
+    }
+    else 
+    {
+        $upload_success = false;
+    }
+    if (!$upload_success) 
+    {
+        $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
+        header("Location: img-add.php");
+        exit();
+    }
+    
+    
+}
+
+
+//location delete
+if(isset($_POST['location_delete']))
+{
+    $loca_id = sanitize($_POST['location_delete']);
+    $sqlstr = "DELETE from location WHERE id=$loca_id";
+    $result = $conn->query($sqlstr);
+    if($result)
+    {
+        $_SESSION['message'] = 'Deleted Succesfully';
+        header("Location: location-view.php");
+        exit();
+    } 
+    else 
+    {
+        die(mysqli_error($conn));
+    }
+}
+
+
+// Location edit
+if(isset($_POST['location_update']))
+{
+    $loca_id = sanitize($_POST['loca_id']);
+    $location = sanitize($_POST['loca_name']);  
+    if($location == '')
+    {
+        $_SESSION['message'] = "Location name must be filled";
+        header('location-edit?id='.$loca_id.'.php');
+        exit();
+    }
+    $sqlstr = "UPDATE location SET places = ? WHERE id = $loca_id";
+    $stmt = $conn->prepare($sqlstr);
+    $stmt->bind_param("s", $location);
+    $stmt->execute();
+    $result = $stmt->affected_rows;
+    if ($result) 
+    {
+        $_SESSION['message'] = "Location updated Successfully";
+        header('location: location-view.php');
+        exit();
+    } 
+    else 
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('location: location-edit?id='.$loca_id.'.php');
+        exit();
+    
+    }
+}
+
+
+// Location add
+if(isset($_POST['location_add']))
+{
+    $location = sanitize($_POST['loca_name']);
+    if($location == '')
+    {
+        $_SESSION['message'] = "Location name must be filled";
+        header('location: location-add.php');
+        exit();
+    }
+    $sqlstr = "INSERT INTO location (places) VALUES (?)";
+    $stmt = $conn->prepare($sqlstr);
+    $stmt->bind_param("s", $location);
+    $stmt->execute();
+    $result = $stmt->affected_rows;
+    if ($result) 
+    {
+        $_SESSION['message'] = "Location added Successfully";
+        header('location: location-view.php');
+        exit();
+    } 
+    else 
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('location: location-view.php');
+        exit();
+    
+    } 
+}
+
+
+// Post edit 
 if(isset($_POST['post_edit']))
 {
     $category_id = sanitize($_POST['category']);
@@ -217,7 +373,7 @@ if(isset($_POST['post_add']))
 
                         if (!$result) 
                         {
-                            $upload_success == false;
+                            $upload_success = false;
                         }
                         
                         move_uploaded_file($tmp_name, $img_upload_path);
@@ -230,12 +386,12 @@ if(isset($_POST['post_add']))
                     } 
                     else 
                     {
-                        $upload_success == false;
+                        $upload_success = false;
                     }
                 } 
                 else 
                 {
-                    $upload_success == false;
+                    $upload_success = false;
                 }
             }
         }

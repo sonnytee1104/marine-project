@@ -43,7 +43,7 @@ include('includes/header.php');
                                     <th scope="row">'.$counter.'</th>
                                     <td>'.$name.'</td>
                                     <td>
-                                        <button class="btn btn-info"><a href="location-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
+                                        <button class="btn btn-info"><a name="loca_id" href="location-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                     </td>
                                     <td>
                                         <form action="code.php" method="post">
