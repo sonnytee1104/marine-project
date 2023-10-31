@@ -75,7 +75,7 @@ include('includes/header.php');
                                 <input type="hidden" value="<?= $img_id ?>" name="pic_id">
                             </div>
                             <div class="col-md-12 mb-3">
-                                <button name="img_add" type="submit" class="btn btn-primary">Update Picture</button>
+                                <button name="img_edit" type="submit" class="btn btn-primary">Update Picture</button>
                             </div>                          
                         </div>
 

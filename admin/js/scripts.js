@@ -25,8 +25,10 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-  
+// JS for search bar in view
 
+  
+// JS for view pictures
 $(function getCateForPic()
 {
     // Trigger the Ajax request when the category selection changes
@@ -53,11 +55,13 @@ $(function getCateForPic()
 });
 
 
+// JS for Confirm before delete (not working)
 function bindDeleteConfirmation() {
     $('form[name="deleteForm"]').submit(function () {
         return confirm('Are you sure you want to delete this item');
     });
 }
+bindDeleteConfirmation();
 
 
 

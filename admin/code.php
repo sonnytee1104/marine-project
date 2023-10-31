@@ -1,19 +1,40 @@
 <?php
 include('authentication.php');
 
+// Pictures delete
+if(isset($_POST['img_delete']))
+{
+    $pic_id = sanitize($_POST['img_delete']);
+    $sqlstr = "DELETE from pictures WHERE id=$pic_id";
+    $result = $conn->query($sqlstr);
+    if($result)
+    {
+        $_SESSION['message'] = 'Deleted Succesfully';
+        header("Location: img-view.php");
+        exit();
+    } 
+    else 
+    {
+        die(mysqli_error($conn));
+    }
+    
+}
+
+
+
 // Pictures edit
 if(isset($_POST['img_edit']))
 {
     $category_id = sanitize($_POST['category']);
     $img = $_FILES['image'];
     $pic_id = sanitize($_POST['pic_id']);
+    $upload_success = true;
     if (!empty($img['name']))
     {
         $img_name = $img['name'];
         $tmp_name = $img['tmp_name'];
         $img_error = $img['error'];
         $img_size = $img['size'];
-        $upload_success = true;
             
         if ($img_error === 0 && $img_size > 0 && $img_size < 3 * 1024 * 1024) 
         {
@@ -28,7 +49,7 @@ if(isset($_POST['img_edit']))
                 // Path for Laptop
                 $img_upload_path = $_SERVER['DOCUMENT_ROOT'] . '\marine-project\assets\pictures/' . $new_img_name;
 
-                $sqlstr = "UPDATE pictures SET img_path = ?, cate_id = ?";
+                $sqlstr = "UPDATE pictures SET img_path = ?, cate_id = ? WHERE id = $pic_id";
                 $stmt = $conn->prepare($sqlstr);
                 $stmt->bind_param("si", $new_img_name, $category_id);
                 $stmt->execute();
@@ -43,9 +64,6 @@ if(isset($_POST['img_edit']))
                 }
                 
                 move_uploaded_file($tmp_name, $img_upload_path);
-                $_SESSION['message'] = 'Picture updated successfully!';
-                header("Location: img-view.php");
-                exit();
             }
         }
         else 
@@ -55,12 +73,12 @@ if(isset($_POST['img_edit']))
     }
     else 
     {
-        $sqlstr = "UPDATE pictures SET cate_id = ?";
+        $sqlstr = "UPDATE pictures SET cate_id = ? WHERE id = $pic_id";
         $stmt = $conn->prepare($sqlstr);
         $stmt->bind_param("i", $category_id);
         $stmt->execute();
         $result = $stmt->affected_rows;
-        if(!result)
+        if($result == 0)
         {
             $upload_success = false;
         }
@@ -68,7 +86,13 @@ if(isset($_POST['img_edit']))
     if (!$upload_success) 
     {
         $_SESSION['message'] = 'Ops! Something went wrong while uploading images';
-        header("Location: img-edit?id=$pic_id.php");
+        header("Location: img-edit.php?id=$pic_id");
+        exit();
+    }
+    else
+    {
+        $_SESSION['message'] = 'Picture updated successfully!';
+        header("Location: img-view.php");
         exit();
     }
     
