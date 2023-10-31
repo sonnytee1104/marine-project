@@ -55,17 +55,18 @@ include('includes/header.php');
           <form>
             <div>
               <input
+                name = "sender_name"
                 type="text"
                 class="form-control"
-                placeholder="First Name"
+                placeholder="Your Name"
               />
-              <input type="text" class="form-control" placeholder="Last Name" />
             </div>
             <div>
-              <input type="email" class="form-control" placeholder="E-mail" />
-              <input type="text" class="form-control" placeholder="Phone" />
+              <input name ="email" type="email" class="form-control" placeholder="E-mail" />
             </div>
-
+            <div>
+              <input name ="Subject" type="text" class="form-control" placeholder="Subject" />
+            </div>
             <textarea
               rows="5"
               placeholder="Message"

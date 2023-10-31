@@ -74,27 +74,6 @@ include('includes/header.php');
         </div>
     </div>  
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var deleteButtons = document.querySelectorAll('.btn-delete');
-
-        deleteButtons.forEach(function(button) {
-            button.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            var confirmDelete = confirm('Are you sure you want to delete this?');
-
-            if (confirmDelete) {
-                var form = button.closest('form');
-                form.submit();
-            } else {
-                console.log("nothing here");
-            }
-            });
-        });
-});
-
-</script>
 <?php 
 include('includes/footer.php');
 include('includes/scripts.php');
