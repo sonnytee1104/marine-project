@@ -14,10 +14,6 @@ const addEventOnElements =  function(elements, eventType, callback) {
     }
 }
 
-/**
- * Navcar toggle for mobile
- */
-
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
