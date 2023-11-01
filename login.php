@@ -1,9 +1,6 @@
 <?php 
 session_start();
 include('config.php');
-include('includes/header.php');
-//include('includes/navbar.php');
-
 if(isset($_SESSION['auth']))
 {
     $_SESSION['message'] = "You are already logged In";
@@ -25,6 +22,7 @@ if(isset($_POST['login_btn']))
   
     if (count($resultArray) > 0) {
         $userInfor = $resultArray[0];
+        $_SESSION['user_id'] = $userInfor['id'];
         $_SESSION['auth'] = true;
         $_SESSION['auth_role'] = $userInfor['role_as'];
         $_SESSION['auth_user'] = $userInfor;
@@ -49,6 +47,7 @@ if(isset($_POST['login_btn']))
         exit();
     }
 }
+include('includes/header.php');
 
 ?>
     <main>
@@ -71,7 +70,7 @@ if(isset($_POST['login_btn']))
                     </div>
                     <div class="cart-body">
 
-                        <form action="" method="post">
+                        <form action="login.php" method="post">
                             <div class="form-group-mb-3">
                                 <label for="">Username</label>
                                 <input name="username" type="text" placeholder="Enter Username" class="form-control">

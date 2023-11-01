@@ -26,7 +26,7 @@
                     }
                     $category = $result_cate->fetch_assoc()['cate_name'] ?? null;
                     
-                    // Get images for the current animal
+                    // Get images 
                     
                     echo '<tr>
                         <th scope="row">'.$counter.'</th>
