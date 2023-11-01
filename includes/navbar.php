@@ -45,7 +45,7 @@
             if(!isset($_SESSION['auth']))
             {
               ?>
-              <a href="<?= ROOT_URL?>login.php" class="login-btn">Login</a>
+              <a href="#" class="login-btn">Login</a>
 
               <a href="<?= ROOT_URL?>register.php" class="btn btn-primary">Sign Up</a>
               <?php
