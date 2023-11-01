@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('config.php');
+
 if(isset($_SESSION['auth']))
 {
     $_SESSION['message'] = "You are already logged In";
@@ -47,6 +48,7 @@ if(isset($_POST['login_btn']))
         exit();
     }
 }
+
 include('includes/header.php');
 
 ?>
