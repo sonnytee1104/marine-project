@@ -304,11 +304,11 @@ body.nav-active{overflow: hidden;}
     transition: none;
 }
 
- .main.active{
-    height: 570px; 
+.main.active{
+    height: 470px; 
 }
 
- .main.active .main-box.login{
+.main.active .main-box.login{
     transition: none;
     transform: translateX(-500px);
 }
@@ -318,4 +318,11 @@ body.nav-active{overflow: hidden;}
     transform: translateX(0);
 }
 
+.main {
+    transform: scale(0);
+}
+
+.main.active-popup{
+    transform: scale(1);
+}
 

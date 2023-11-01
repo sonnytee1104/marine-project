@@ -10,8 +10,14 @@ loginLink.addEventListener('click', ()=> {
     container.classList.remove('active');
 });
 
-// const btnPopup = document.querySelector('.login-btn');
+const btnPopup = document.querySelector('.login-btn');
 
-// btnPopup.addEventListener('click', ()=>{
-//     container.classList.add('active-popup');
-// });
+btnPopup.addEventListener('click', ()=>{
+     container.classList.add('active-popup');
+});
+
+const closeIcon = document.querySelector('.close-icon');
+
+closeIcon.addEventListener('click', ()=>{
+    container.classList.remove('active-popup');
+});
