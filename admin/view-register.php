@@ -62,7 +62,7 @@ include('includes/header.php');
                                         <button class="btn btn-primary"><a href="register-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                     </td>
                                     <td>
-                                        <form action="code.php" method="post">
+                                        <form action="code.php" method="post" name="deleteForm">
                                         <button type="submit" class="btn btn-danger btn-delete" name="user_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>

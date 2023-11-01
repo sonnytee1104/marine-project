@@ -25,9 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-// JS for search bar in view
 
-  
 // JS for view pictures
 $(function getCateForPic()
 {
@@ -61,7 +59,7 @@ function bindDeleteConfirmation() {
         return confirm('Are you sure you want to delete this item');
     });
 }
-bindDeleteConfirmation();
+
 
 
 

@@ -46,7 +46,7 @@ include('includes/header.php');
                                         <button class="btn btn-info"><a name="loca_id" href="location-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                     </td>
                                     <td>
-                                        <form action="code.php" method="post">
+                                        <form action="code.php" method="post" name="deleteForm">
                                         <button type="submit" class="btn btn-danger btn-delete" name="location_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>

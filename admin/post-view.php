@@ -94,7 +94,7 @@ include('includes/header.php');
                                                 <button class="btn btn-info"><a href="post-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                             </td>
                                             <td>
-                                                <form action="code.php" method="post">
+                                                <form action="code.php" name="deletedForm" method="post">
                                                     <button type="submit" class="btn btn-danger btn-delete" name="post_delete" value="'.$id.'">Delete</button>
                                                 </form>
                                             </td>
