@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login and Registration</title>
+  </head>
+  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header " data-header>
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="./assets/img/logo.svg" width="187" height="38" alt="logo" />
+        </a>
+        <nav class="navbar" data-navbar="">
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="#" class="navbar-link active">Home</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">About</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">Event</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">Sea Life</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">Contact</a>
+            </li>
+          </ul>
+
+          <div class="header-action">
+            <a href="#" class="login-btn">Login</a>
+
+            <a href="#" class="btn btn-primary">Sign Up</a>
+          </div>
+        </nav>
+    </header>
+    <!-- CONTAINER -->
+    <div class="lg-re-form">
+    <div class="main">
+      <div class="main-box login">
+        <h1 class="title">Login</h1>
+        <form action="#">
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" required>
+              <label>Email</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Password</label>
+          </div>
+
+          <button type="submit" class="main-btn">Login</button>
+
+          <div class="register">
+            <p>If you don't have an account?
+              <a href="#" class="register-link">Register Here!</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="main-box register">
+        <h1 class="title">Sign Up</h1>
+        <form action="#">
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" required>
+              <label>Username</label>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" required>
+              <label>Email</label>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Password</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Confirm Password</label>
+          </div>
+
+          <button type="submit" class="main-btn">Sign Up Now</button>
+
+          <div class="register">
+            <p>Already have an account?
+              <a href="#" class="login-link">Login!</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+        <span class="close-icon">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+
+    </div>
+  </div>
+
+    <script src="./login.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
