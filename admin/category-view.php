@@ -19,7 +19,7 @@ include('includes/header.php');
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-stripe">
+                        <table id="myDataTable" class="table table-bordered table-stripe">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -31,7 +31,7 @@ include('includes/header.php');
                             </thead>
                             <tbody>
                             <?php 
-                            $sqlstr = "SELECT * FROM categories";
+                            $sqlstr = "SELECT * FROM categories WHERE status = 0";
                             $result = $conn->query($sqlstr);
                             if ($result) 
                             {
@@ -49,7 +49,7 @@ include('includes/header.php');
                                     </td>
                                     <td>
                                         <form action="code.php" method="post">
-                                        <button type="submit" class="btn btn-danger" name="cate_delete" value="'.$id.'">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-delete" name="cate_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>
                                     </tr>';
@@ -74,7 +74,6 @@ include('includes/header.php');
         </div>
     </div>  
 </div>
-
 <?php 
 include('includes/footer.php');
 include('includes/scripts.php');

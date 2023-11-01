@@ -31,7 +31,7 @@ include('includes/header.php');
                 as possible as possible
               </p>
               <div class="wrapper">
-                <a href="#" class="btn btn-secondary">
+                <a href="categories.php" class="btn btn-secondary">
                   <span class="span">Explore Now</span>
 
                   <ion-icon
@@ -39,20 +39,6 @@ include('includes/header.php');
                     aria-hidden="true"
                   ></ion-icon>
                 </a>
-
-                <button class="main-btn">
-                  <div class="btn-img">
-                    <img
-                      src="./assets/img/main-button-img.jpg"
-                      width="100"
-                      height="100"
-                      alt="our story"
-                      class="img-cover"
-                    />
-                    <ion-icon name="play" aria-hidden="true"></ion-icon>
-                  </div>
-                  <p class="text">Watch our Story</p>
-                </button>
               </div>
             </div>
             <figure class="main-banner">
@@ -130,6 +116,62 @@ include('includes/header.php');
             <p class="section-subtitle">Top Sea Life</p>
             <h2 class="h2 title section-title">Explore Top Sea Life</h2>
             <ul class="seli-list">
+            <?php 
+              $str_animal = "SELECT * from animals LIMIT 6";
+              $result_animal = $conn->query($str_animal);
+
+              if($result_animal)
+              {
+                while ($animal_row = $result_animal->fetch_assoc()) 
+                {
+                  $id = $animal_row['id'];
+                  $location_id = $animal_row['location_id'];
+                  $animal_name = $animal_row['animal_name'];
+                  // Get the location name
+                  $sqlstr = "SELECT places FROM location WHERE id = $location_id";
+                  $result_loca = $conn->query($sqlstr); 
+                  if(!$result_loca)
+                  {
+                      echo "<h4> There are no location available </h4>";
+                  }
+                  $location = $result_loca->fetch_assoc()['places'] ?? null;
+                  // Get images for the current animal
+                  $sql_gallery = "SELECT pictures.img_path 
+                                  FROM animal_gallery 
+                                  INNER JOIN pictures ON animal_gallery.picture_id = pictures.id
+                                  WHERE animal_gallery.animal_id = $id LIMIT 1";
+                  $result_images = $conn->query($sql_gallery);
+                  $row_images = $result_images->fetch_assoc();
+                  echo '
+                    <li>
+                    <div class="seli-card">
+                      <div
+                        class="card-banner img-holder"
+                        style="width: 600; height: 650"
+                      >
+                        <img
+                          src="assets/pictures/'.$row_images['img_path'].'"
+                          width="600"
+                          height="650"
+                          loading="lazy"
+                          class="img-cover"
+                        />
+                      </div>
+                      <div class="card-content">
+                        <h3 class="h3 title">
+                          <a href="detail.php?id='.$id.'" class="card-title"> '.$animal_name.' </a>
+                        </h3>
+                        <address class="card-text">'.$location.'</address>
+                    
+                      </div>
+                    </div>
+                  </li>
+                ';
+                }
+                
+              }
+            ?>
+            <!-- <ul class="seli-list">
               <li>
                 <div class="seli-card">
                   <div
@@ -149,13 +191,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Dumbo Octopus </a>
                     </h3>
                     <address class="card-text">Deep open ocean</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.7
-                      </span>
-                      <p class="rating-text">(11.1k Review)</p>
-                    </div>
+                
                   </div>
                 </div>
               </li>
@@ -178,13 +214,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Giant Barrel Sponge </a>
                     </h3>
                     <address class="card-text">The Caribbean Sea</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.6
-                      </span>
-                      <p class="rating-text">(16.8k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -209,13 +239,7 @@ include('includes/header.php');
                     <address class="card-text">
                       Southeast Asia and Australia
                     </address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.7
-                      </span>
-                      <p class="rating-text">(120k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -238,13 +262,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Blue Whale </a>
                     </h3>
                     <address class="card-text">North Pacific Ocean</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.0
-                      </span>
-                      <p class="rating-text">(123.4k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -267,13 +285,7 @@ include('includes/header.php');
                       <a href="#" class="card-title"> Flatback Turtle </a>
                     </h3>
                     <address class="card-text">North Australia</address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        4.5
-                      </span>
-                      <p class="rating-text">(111.1k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
@@ -298,18 +310,13 @@ include('includes/header.php');
                     <address class="card-text">
                       Macquarie Island, Southern Ocean
                     </address>
-                    <div class="card-rating">
-                      <span class="span">
-                        <ion-icon name="star" aria-hidden="true"></ion-icon>
-                        5
-                      </span>
-                      <p class="rating-text">(98.03k Review)</p>
-                    </div>
+                    
                   </div>
                 </div>
               </li>
+            </ul> -->
             </ul>
-            <a href="#" class="btn btn-primary">Meet Them</a>
+            <a href="<?= ROOT_URL ?>categories.php" class="btn btn-primary">Meet Them</a>
           </div>
         </section>
         <!-- GALLERY -->
@@ -317,98 +324,38 @@ include('includes/header.php');
           <div class="container">
             <p class="section-subtitle">Photo Gallery</p>
             <h2 class="h2 title section-title">Photo’s From Customers</h2>
-            <ul class="gallery-list">
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-1.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-2.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-3.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-4.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-5.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-              <li class="gallery-item">
-                <figure
-                  class="item-banner img-holder"
-                  style="width: 700; height: 925"
-                >
-                  <img
-                    src="./assets/img/gallery-6.jpg"
-                    width="700"
-                    height="925"
-                    loading="lazy"
-                    alt="gallery"
-                    class="img-cover"
-                  />
-                </figure>
-              </li>
-            </ul>
+          <ul class="gallery-list">
+        <!-- Query Gallery from DB -->
+        <?php
+          $sqlstr_gallery = "SELECT * from pictures WHERE cate_id = 7 LIMIT 6";
+          $result_gallery = $conn->query($sqlstr_gallery);
+          if ($result_gallery) 
+          {
+            while ($row = $result_gallery->fetch_assoc())
+            {
+              $pic_id = $row['id'];
+              $img = $row['img_path'];
+              echo '
+                <li class="gallery-item">
+                  <figure
+                    class="item-banner img-holder"
+                    style="width: 700; height: 925"
+                  >
+                    <img
+                      src="./assets/pictures/'.$img.'"
+                      width="700"
+                      height="925"
+                      loading="lazy"
+                      alt="gallery"
+                      class="img-cover"
+                    />
+                  </figure>
+                </li>
+              ';
+            }
+          }     
+        ?>
+          </ul>
           </div>
         </section>
 

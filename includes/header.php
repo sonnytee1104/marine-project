@@ -11,9 +11,29 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/glide.core.min.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/glide.theme.min.css" />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/index.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/contact.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/event.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/about-us.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/ani-loca.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/categories.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/details.css" />
     <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/main-banner.png" />
     <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/preloader.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+
   </head>
   <body>
     <!-- preloader -->

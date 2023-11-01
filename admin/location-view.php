@@ -19,7 +19,7 @@ include('includes/header.php');
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-stripe">
+                        <table id="myDataTable" class="table table-bordered table-stripe">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -35,18 +35,19 @@ include('includes/header.php');
                             if ($result) 
                             {
                                 $counter = 1;
-                                while ($row = $result->fetch_assoc()) {
+                                while ($row = $result->fetch_assoc()) 
+                                {
                                     $id = $row['id'];
                                     $name = $row['places'];
                                     echo '<tr>
                                     <th scope="row">'.$counter.'</th>
                                     <td>'.$name.'</td>
                                     <td>
-                                        <button class="btn btn-info"><a href="location-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
+                                        <button class="btn btn-info"><a name="loca_id" href="location-edit.php?id='.$id.'" class="text-light" >Edit</a></button>
                                     </td>
                                     <td>
                                         <form action="code.php" method="post">
-                                        <button type="submit" class="btn btn-danger" name="location_delete" value="'.$id.'">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-delete" name="location_delete" value="'.$id.'">Delete</button>
                                         </form>
                                     </td>
                                     </tr>';

@@ -4,6 +4,7 @@ include('includes/header.php');
 ?>
 
 <div class="container-fluid px-4">
+<?php include("message.php"); ?>
     <h1 class="mt-4">ADMIN Panel Dashboard</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Dashboard</li>

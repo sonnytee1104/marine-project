@@ -31,7 +31,7 @@ include('includes/header.php');
                             $animal_des = $row['description'];  
                             ?>
                             <form action="code.php" method="post" enctype="multipart/form-data">
-                                
+                                <input type="hidden" name = "post_id" value="<?= $animal_id ?>">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="">Category List</label>

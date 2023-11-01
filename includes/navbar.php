@@ -20,29 +20,52 @@
 
           <ul class="navbar-list">
             <li class="navbar-item">
-              <a href="#" class="navbar-link active">Home</a>
+              <a href="<?=ROOT_URL?>" class="navbar-link active">Home</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">About</a>
+              <a href="<?= ROOT_URL?>about-us.php" class="navbar-link">About</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Event</a>
+              <a href="<?= ROOT_URL?>event.php" class="navbar-link">Event</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Sea Life</a>
+              <a href="<?= ROOT_URL?>categories.php" class="navbar-link">Sea Life</a>
             </li>
 
             <li class="navbar-item">
-              <a href="#" class="navbar-link">Contact</a>
+              <a href="<?= ROOT_URL?>contact-us.php" class="navbar-link">Contact</a>
             </li>
           </ul>
 
           <div class="header-action">
-            <a href="#" class="login-btn">Login</a>
+            <?php 
+            if(!isset($_SESSION['auth']))
+            {
+              ?>
+              <a href="<?= ROOT_URL?>login.php" class="login-btn">Login</a>
 
-            <a href="#" class="btn btn-primary">Sign Up</a>
+              <a href="<?= ROOT_URL?>register.php" class="btn btn-primary">Sign Up</a>
+              <?php
+            }
+            else
+            {
+              ?>
+               <h4>Hello! <?= $_SESSION['auth_user']['username'] ?></h4>
+               <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="register-edit.php?id=<?= $_SESSION['user_id']?>">Settings</a></li>
+                          <li><hr class="dropdown-divider" /></li>
+                          <li><a class="dropdown-item" href="../marine-project/logout.php">Logout</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <?php
+            }
+            ?>             
           </div>
         </nav>

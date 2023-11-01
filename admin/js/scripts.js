@@ -24,3 +24,45 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+// JS for search bar in view
+
+  
+// JS for view pictures
+$(function getCateForPic()
+{
+    // Trigger the Ajax request when the category selection changes
+    $('select[name="pic_category"]').on('change', function(){
+        var selectedCategory = $(this).val();
+
+        // Make an Ajax request
+        $.ajax({
+            url: 'img-view2.php', 
+            method: 'POST',
+            data: {category: selectedCategory},
+            success: function(response){
+                // Update the table body with the received data
+                $('table tbody').html(response);
+                bindDeleteConfirmation();
+            },
+            error: function(){
+                alert('Error fetching data.');
+            }
+        });
+    });
+     // Bind the delete confirmation initially
+     bindDeleteConfirmation();
+});
+
+
+// JS for Confirm before delete (not working)
+function bindDeleteConfirmation() {
+    $('form[name="deleteForm"]').submit(function () {
+        return confirm('Are you sure you want to delete this item');
+    });
+}
+bindDeleteConfirmation();
+
+
+
+
