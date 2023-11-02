@@ -50,12 +50,12 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed <?= $page == 'img-add.php' || $page == 'img-view.php' ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLocation" aria-expanded="false" aria-controls="collapsePosts">
+                <a class="nav-link collapsed <?= $page == 'img-add.php' || $page == 'img-view.php' ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePictures" aria-expanded="false" aria-controls="collapsePosts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Picture
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse <?= $page == 'img-add.php' || $page == 'img-view.php' ? 'show' : '' ?>" id="collapseLocation" aria-labelledby="Location" data-bs-parent="#sidenavAccordion">
+                <div class="collapse <?= $page == 'img-add.php' || $page == 'img-view.php' ? 'show' : '' ?>" id="collapsePictures" aria-labelledby="Pictures" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link <?= $page == 'img-add.php' ? 'active' : '' ?> " href="img-add.php">Add Pictures</a>
                         <a class="nav-link <?= $page == 'img-view.php' ? 'active' : '' ?>" href="img-view.php">View Pictures</a>

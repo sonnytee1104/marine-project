@@ -15,7 +15,9 @@ include('includes/header.php');
         <?php include("message.php"); ?>
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit User</h4>
+                    <h4>Edit User
+                    <a href="view-register.php" class="btn btn-danger float-end">BACK</a>
+                    </h4>
                 </div>
                 <div class="card-body">
 
