@@ -242,7 +242,82 @@ include('includes/header.php');
         </section>
       </article>
     </main>
+  
+   <!-- Login and Register form -->
+  <div class="lg-re-form">
+    <div class="main">
+      <div class="main-box login">
+        <h1 class="title">Login</h1>
+        <form action="#">
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" required>
+              <label>Email</label>
+          </div>
 
-    <?php 
-    include('includes/footer.php');
-    ?>
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Password</label>
+          </div>
+
+          <button type="submit" class="main-btn">Login</button>
+
+          <div class="register">
+            <p>If you don't have an account?
+              <a href="#" class="register-link">Register Here!</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="main-box register">
+        <h1 class="title">Sign Up</h1>
+        <form action="#">
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" required>
+              <label>Username</label>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" required>
+              <label>Email</label>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Password</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="password" required>
+              <label>Confirm Password</label>
+          </div>
+
+          <button type="submit" class="main-btn">Sign Up Now</button>
+
+          <div class="register">
+            <p>Already have an account?
+              <a href="#" class="login-link">Login!</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+        <span class="close-icon">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+
+    </div>
+  </div>
+
+<?php 
+include('includes/footer.php');
+?>
