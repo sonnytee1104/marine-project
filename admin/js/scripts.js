@@ -62,6 +62,10 @@ function bindDeleteConfirmation() {
     });
 }
 
+function test1() {
+    confirm("Are you sure you want to delete this item");
+}
+
 
 
 
