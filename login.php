@@ -57,48 +57,76 @@ include('includes/header.php');
         <section
           class="section main has-bg-image"
           aria-label="main"
-          style="background-image: url('<?= ROOT_URL; ?>assets/img//assets/img/main-bg.jpg')"
+          style="background-image: url('assets/img//assets/img/main-bg.jpg')"
         >
-        <div class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
+          <div class="py-5">
+            <div class="container">
+              <div class="row justify-content-center">
                 <div class="col-md-5">
                 <?php
-                include("message.php");
+                    include("message.php");
                 ?>
-                <div class="cart">
+                  </div>
+                  <div class="cart">
                     <div class="cart-header">
-                        <h4>Login</h4>
+                      <h4>Login</h4>
                     </div>
                     <div class="cart-body">
+                      <form action="login.php" method="post">
+                        <div class="form-group-mb-3">
+                          <div class="label">
+                            <span class="icon"
+                              ><ion-icon name="person"></ion-icon
+                            ></span>
+                            <label for="">Username</label>
+                          </div>
+                          <input
+                            name="username"
+                            type="text"
+                            placeholder="Enter Username"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="form-group-mb-3">
+                          <div class="label">
+                            <span class="icon"
+                              ><ion-icon name="lock-closed"></ion-icon
+                            ></span>
+                            <label for="">Password</label>
+                          </div>
+                          <input
+                            name="password"
+                            type="password"
+                            placeholder="Enter Password"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="form-group-mb-3">
+                          <button
+                            name="login_btn"
+                            type="submit"
+                            class="btn btn-primary mt-2"
+                          >
+                            Login Now
+                          </button>
+                        </div>
 
-                        <form action="login.php" method="post">
-                            <div class="form-group-mb-3">
-                                <label for="">Username</label>
-                                <input name="username" type="text" placeholder="Enter Username" class="form-control">
-                            </div>
-                            <div class="form-group-mb-3">
-                                <label for="">Password</label>
-                                <input name="password" type="password" placeholder="Enter Password" class="form-control">
-                            </div>
-                            <div class="form-group-mb-3">
-                            <input class="form-control" type="checkbox" name="remember">
-                            <label>Remember me!</label> 
-                            </div>
-                            <div class="form-group-mb-3">
-                                <button name="login_btn" type="submit" class="btn btn-primary mt-2">Login Now</button>
-                            </div>
-                        </form>
+                        <div class="form-group-mb-3">
+                          <p name="login-text" class="login-text">
+                            If you don't have an account?
+                            <a href="#">Register Here!</a>
+                          </p>
+                        </div>
+                      </form>
                     </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
         </section>
       </article>
     </main>
-    
 
 <?php 
 include('includes/footer.php');

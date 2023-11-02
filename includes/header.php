@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/ani-loca.css" />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/categories.css" />
     <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/details.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/login.css" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/register.css" />
     <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/main-banner.png" />
     <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/preloader.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
