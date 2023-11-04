@@ -38,17 +38,7 @@
 
   </head>
   <body>
-    <!-- preloader -->
-    <div class="preloader" data-preloader>
-      <div class="preloader-inner">
-        <img
-          src="<?= ROOT_URL; ?>assets/img/preloader.svg"
-          width="100"
-          height="100"
-          class="img"
-        />
-      </div>
-    </div>
+    
     <!-- HEADER -->
     <header class="header" data-header>
       <div class="container">

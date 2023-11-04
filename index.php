@@ -145,25 +145,28 @@ include('includes/header.php');
                   echo '
                     <li>
                     <div class="seli-card">
-                      <div
-                        class="card-banner img-holder"
-                        style="width: 600; height: 650"
-                      >
-                        <img
-                          src="assets/pictures/'.$row_images['img_path'].'"
-                          width="600"
-                          height="650"
-                          loading="lazy"
-                          class="img-cover"
-                        />
-                      </div>
-                      <div class="card-content">
+                    <div class="card-content">
                         <h3 class="h3 title">
                           <a href="detail.php?id='.$id.'" class="card-title"> '.$animal_name.' </a>
                         </h3>
-                        <address class="card-text">'.$location.'</address>
+                        <address style="text-align:center" class="card-text">'.$location.'</address>
                     
                       </div>
+                      <div
+                        class="card-banner img-holder"
+                        style="width: 600; height: 650; border-radius: none;"
+                      >
+                        <a href="detail.php?id='.$id.'" style="height: 100%;object-fit:cover">
+                          <img
+                            src="assets/pictures/'.$row_images['img_path'].'"
+                            width="600"
+                            height="650"
+                            loading="lazy"
+                            class="img-cover"
+                          />
+                        </a>
+                      </div>
+                      
                     </div>
                   </li>
                 ';

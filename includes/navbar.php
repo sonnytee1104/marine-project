@@ -1,4 +1,5 @@
 <nav class="navbar" data-navbar="">
+<?php $page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")+1); ?>
           <div class="navbar-top">
             <a href="#" class="logo">
               <img
@@ -20,23 +21,19 @@
 
           <ul class="navbar-list">
             <li class="navbar-item">
-              <a href="<?=ROOT_URL?>" class="navbar-link active">Home</a>
+              <a href="<?=ROOT_URL?>" class="navbar-link <?= $page == 'index.php' ? 'active' : '' ?>">Home</a>
             </li>
 
             <li class="navbar-item">
-              <a href="<?= ROOT_URL?>about-us.php" class="navbar-link">About</a>
+              <a href="<?= ROOT_URL?>about-us.php" class="navbar-link <?= $page == 'about-us.php' ? 'active' : '' ?> ">About</a>
             </li>
 
             <li class="navbar-item">
-              <a href="<?= ROOT_URL?>event.php" class="navbar-link">Event</a>
+              <a href="<?= ROOT_URL?>categories.php" class="navbar-link <?= $page == 'categories.php' ? 'active' : '' ?>">Sea Life</a>
             </li>
 
             <li class="navbar-item">
-              <a href="<?= ROOT_URL?>categories.php" class="navbar-link">Sea Life</a>
-            </li>
-
-            <li class="navbar-item">
-              <a href="<?= ROOT_URL?>contact-us.php" class="navbar-link">Contact</a>
+              <a href="<?= ROOT_URL?>contact-us.php" class="navbar-link <?= $page == 'contact-us.php' ? 'active' : '' ?>">Contact</a>
             </li>
           </ul>
 

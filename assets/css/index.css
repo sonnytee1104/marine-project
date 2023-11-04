@@ -126,6 +126,7 @@ body.nav-active {overflow: hidden;}
     background-color: rgb(217, 216, 216);
     overflow: hidden;
 }
+
 .preloader {
     position: fixed;
     top: 0;
@@ -366,7 +367,7 @@ body.nav-active {overflow: hidden;}
 
 .seli-card .card-banner {
     position: relative;
-    border-radius: 30px;
+    /* border-radius: 30px; */
 }
 
 

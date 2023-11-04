@@ -1,7 +1,53 @@
 <?php
 require_once('config.php');
-include('includes/header.php');
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jenkinson - Explore the sea life</title>
+    <meta name="title" content="Jenkinson - Explore the sea life" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/main-banner.png" />
+    <link rel="preload" as="image" href="<?= ROOT_URL; ?>assets/img/preloader.svg" />
+    <link rel="stylesheet" href="<?=ROOT_URL; ?>assets/css/event.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="<?= ROOT_URL; ?>assets/img/logo.svg" width="187" height="38" alt="logo" />
+        </a>
+
+        <?php include("includes/navbar.php")?>
+
+        <button class="nav-toggle-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <div class="overlay active" data-overlay data-nav-toggler></div>
+      </div>
+    </header>
 <section class="section event" aria-label="event" id="section_1">
       <div class="container">
         <div class="title-wrapper">
